@@ -146,7 +146,7 @@ class WikipediaNetwork(InMemoryDataset):
     return osp.join(self.root, self.name, 'raw')
 
   @property
-  def processed_dir(self) -> str: # self.
+  def processed_dir(self) -> str:
     return osp.join(self.root, self.name, 'processed')
 
   @property
@@ -159,7 +159,7 @@ class WikipediaNetwork(InMemoryDataset):
 
   def download(self):
     pass
-  
+
   def process(self):
     with open(self.raw_paths[0], 'r') as f:
       data = f.read().split('\n')[1:-1]
@@ -213,25 +213,25 @@ class WebKB(InMemoryDataset):
 
   def __init__(self, root, name, transform=None, pre_transform=None):
     self.name = name.lower()
-    assert self.name in ['cornell', 'texas', 'washington', 'wisconsin'] # self.name = name.lower()
+    assert self.name in ['cornell', 'texas', 'washington', 'wisconsin']
 
     super(WebKB, self).__init__(root, transform, pre_transform)
     self.data, self.slices = torch.load(self.processed_paths[0])
 
   @property
-  def raw_dir(self):  # path to the raw data
+  def raw_dir(self):
     return osp.join(self.root, self.name, 'raw')
 
   @property
-  def processed_dir(self):  # path to the processed data
+  def processed_dir(self):
     return osp.join(self.root, self.name, 'processed')
 
   @property
-  def raw_file_names(self): # name of the file in the raw_dir
+  def raw_file_names(self):
     return ['out1_node_feature_label.txt', 'out1_graph_edges.txt']
 
   @property
-  def processed_file_names(self): # name of the file in the processed_dir
+  def processed_file_names(self):
     return 'data.pt'
 
   def download(self):
@@ -239,24 +239,24 @@ class WebKB(InMemoryDataset):
       download_url(f'{self.url}/{self.name}/{name}', self.raw_dir)
 
   def process(self):
-    with open(self.raw_paths[0], 'r') as f: # '../data/cornell/cornell/raw/out1_node_feature_label.txt'
-      data = f.read().split('\n')[1:-1] # turn to list according to '\n', remove the first(title) and last row
+    with open(self.raw_paths[0], 'r') as f:
+      data = f.read().split('\n')[1:-1]
       x = [[float(v) for v in r.split('\t')[1].split(',')] for r in data]
       x = torch.tensor(x, dtype=torch.float32)
 
       y = [int(r.split('\t')[2]) for r in data]
       y = torch.tensor(y, dtype=torch.long)
 
-    with open(self.raw_paths[1], 'r') as f: # '../data/cornell/cornell/raw/out1_graph_edges.txt'
-      data = f.read().split('\n')[1:-1] # ['173\t96', '121\t72', '35\t79', '2\t130', '2\t75', '104\t79',...]
-      data = [[int(v) for v in r.split('\t')] for r in data]  # 298 [[173, 96], [121, 72], [35, 79], ...]
+    with open(self.raw_paths[1], 'r') as f:
+      data = f.read().split('\n')[1:-1]
+      data = [[int(v) for v in r.split('\t')] for r in data]
       edge_index = torch.tensor(data, dtype=torch.long).t().contiguous()
       edge_index = to_undirected(edge_index)
       # We also remove self-loops in these datasets in order not to mess up with the Laplacian.
       edge_index, _ = remove_self_loops(edge_index)
-      edge_index, _ = coalesce(edge_index, None, x.size(0), x.size(0))  # 554
+      edge_index, _ = coalesce(edge_index, None, x.size(0), x.size(0))
 
-    data = Data(x=x, edge_index=edge_index, y=y)  
+    data = Data(x=x, edge_index=edge_index, y=y)
     data = data if self.pre_transform is None else self.pre_transform(data)
     torch.save(self.collate([data]), self.processed_paths[0])
 
@@ -297,7 +297,6 @@ def get_fixed_splits(data, dataset_name, seed):
   #todo just added this to test sheaf experiments. Remove when done
   if dataset_name == 'gg_cora':
     dataset_name = 'cora'
-  # Load fixed splits  
   with np.load(f'{ROOT_DIR}/src/splits/{dataset_name.lower()}_split_0.6_0.2_{seed}.npz') as splits_file:
     train_mask = splits_file['train_mask']
     val_mask = splits_file['val_mask']

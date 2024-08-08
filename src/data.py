@@ -9,23 +9,24 @@ import torch_geometric.transforms as T
 from torch_geometric.utils import to_undirected
 from heterophilic import WebKB, WikipediaNetwork, Actor
 from utils import ROOT_DIR
+from ogb.nodeproppred import PygNodePropPredDataset
 from graph_rewiring import get_two_hop, apply_gdc, make_symmetric, apply_pos_dist_rewire
 
 DATA_PATH = f'{ROOT_DIR}/data'
 
 def rewire(data, opt, data_dir):
   rw = opt['rewiring']
-  if rw == 'two_hop':
+  if rw == 'two_hop': # rewire the graph with two-hop neighbors
     data = get_two_hop(data)
-  elif rw == 'gdc':
+  elif rw == 'gdc': # rewire the graph with GDC
     data = apply_gdc(data, opt)
-  elif rw == 'pos_enc_knn':
+  elif rw == 'pos_enc_knn': # rewire the graph with positional encoding and k-nearest neighbors
     data = apply_pos_dist_rewire(data, opt, data_dir)
   return data
 
 def get_dataset(opt: dict, data_dir, use_lcc: bool = False) -> InMemoryDataset:
-  ds = opt['dataset']
-  path = os.path.join(data_dir, ds)
+  ds = opt['dataset'] # Photo
+  path = os.path.join(data_dir, ds) # '../data/Photo'
   if ds in ['Cora', 'Citeseer', 'Pubmed']:
     dataset = Planetoid(path, ds)
   elif ds in ['Computers', 'Photo']:
@@ -45,13 +46,13 @@ def get_dataset(opt: dict, data_dir, use_lcc: bool = False) -> InMemoryDataset:
   else:
     raise Exception('Unknown dataset.')
 
-  if use_lcc:
+  if use_lcc: # use the largest connected component
     lcc = get_largest_connected_component(dataset)
 
-    x_new = dataset.data.x[lcc]
-    y_new = dataset.data.y[lcc]
+    x_new = dataset.data.x[lcc] # torch.Size([7487, 745])
+    y_new = dataset.data.y[lcc] # torch.Size([7487])
 
-    row, col = dataset.data.edge_index.numpy()
+    row, col = dataset.data.edge_index.numpy()  # (2, 10556)
     edges = [[i, j] for i, j in zip(row, col) if i in lcc and j in lcc]
     edges = remap_edges(edges, get_node_mapper(lcc))
 
@@ -63,7 +64,7 @@ def get_dataset(opt: dict, data_dir, use_lcc: bool = False) -> InMemoryDataset:
       test_mask=torch.zeros(y_new.size()[0], dtype=torch.bool),
       val_mask=torch.zeros(y_new.size()[0], dtype=torch.bool)
     )
-    dataset.data = data
+    dataset.data = data # Data(x=[7487, 745], edge_index=[2, 238086], y=[7487], train_mask=[7487], test_mask=[7487], val_mask=[7487])
   
   if opt['rewiring'] is not None:
     dataset.data = rewire(dataset.data, opt, data_dir)
@@ -88,11 +89,21 @@ def get_dataset(opt: dict, data_dir, use_lcc: bool = False) -> InMemoryDataset:
     train_mask_exists = True
 
   #todo this currently breaks with heterophilic datasets if you don't pass --geom_gcn_splits
+  # opt['geom_gcn_splits']=True
   if (use_lcc or not train_mask_exists) and not opt['geom_gcn_splits']:
-    dataset.data = set_train_val_test_split(
-      12345,
-      dataset.data,
-      num_development=5000 if ds == "CoauthorCS" else 1500)
+    if ds not in ['cornell', 'texas', 'wisconsin', 'chameleon', 'squirrel','ogbn-arxiv']:
+      dataset.data = set_train_val_test_split(
+        12345,
+        dataset.data,
+        num_development=5000 if ds == "CoauthorCS" else 1500,
+        if_replace=False)
+    else:
+      # 异质图数据（节点数约600）会超出sample num，设置开发集数量为1500太高了，这里设置开发集数量为100
+      dataset.data = set_train_val_test_split(
+        12345,
+        dataset.data,
+        num_development=100,
+        if_replace=True)
 
   return dataset
 
@@ -109,7 +120,7 @@ def get_component(dataset: InMemoryDataset, start: int = 0) -> set:
     queued_nodes.update(neighbors)
   return visited_nodes
 
-
+# get the largest connected component of the graph
 def get_largest_connected_component(dataset: InMemoryDataset) -> np.ndarray:
   remaining_nodes = set(range(dataset.data.x.shape[0]))
   comps = []
@@ -142,7 +153,8 @@ def set_train_val_test_split(
         seed: int,
         data: Data,
         num_development: int = 1500,
-        num_per_class: int = 20) -> Data:
+        num_per_class: int = 20,
+        if_replace: bool = False) -> Data:
   rnd_state = np.random.RandomState(seed)
   num_nodes = data.y.shape[0]
   development_idx = rnd_state.choice(num_nodes, num_development, replace=False)
@@ -152,7 +164,8 @@ def set_train_val_test_split(
   rnd_state = np.random.RandomState(seed)
   for c in range(data.y.max() + 1):
     class_idx = development_idx[np.where(data.y[development_idx].cpu() == c)[0]]
-    train_idx.extend(rnd_state.choice(class_idx, num_per_class, replace=False))
+    train_idx.extend(rnd_state.choice(class_idx, num_per_class, 
+                                      replace=if_replace))
 
   val_idx = [i for i in development_idx if i not in train_idx]
 

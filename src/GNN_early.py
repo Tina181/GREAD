@@ -2,13 +2,13 @@ import torch
 import torch.nn.functional as F
 from early_stop_solver import EarlyStopInt
 from base_classes import BaseGNN
-from model_configurations import set_block, set_function
+from model_configurations import set_block, set_function  ##### 可以设置laplacian or gread
 
 
 class GNNEarly(BaseGNN):
   def __init__(self, opt, dataset, device=torch.device('cpu')):
     super(GNNEarly, self).__init__(opt, dataset, device)
-    self.f = set_function(opt)
+    self.f = set_function(opt)  #### 通过set_function可以设置function 是gread
     block = set_block(opt)
     self.device = device
     time_tensor = torch.tensor([0, self.T]).to(device)

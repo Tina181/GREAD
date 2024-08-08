@@ -41,7 +41,7 @@ class ConstantODEblock(ODEblock):
 
     reg_states = tuple(torch.zeros(x.size(0)).to(x) for i in range(self.nreg))
 
-    func = self.reg_odefunc if self.training and self.nreg > 0 else self.odefunc  # ODEFuncGread
+    func = self.reg_odefunc if self.training and self.nreg > 0 else self.odefunc
     state = (x,) + reg_states if self.training and self.nreg > 0 else x
 
     if self.opt["adjoint"] and self.training:

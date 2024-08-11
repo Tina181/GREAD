@@ -1,0 +1,10 @@
+2024-08-11 22:21:35,567 INFO    StreamThr :12024 [internal.py:wandb_internal():85] W&B internal server running at pid: 12024, started at: 2024-08-11 22:21:35.567132
+2024-08-11 22:21:35,569 DEBUG   HandlerThread:12024 [handler.py:handle_request():158] handle_request: status
+2024-08-11 22:21:35,579 INFO    WriterThread:12024 [datastore.py:open_for_write():87] open: /root/autodl-tmp/GREAD/src/wandb/run-20240811_222135-48mgxej5/run-48mgxej5.wandb
+2024-08-11 22:21:35,579 DEBUG   SenderThread:12024 [sender.py:send():379] send: header
+2024-08-11 22:21:35,581 DEBUG   SenderThread:12024 [sender.py:send():379] send: run
+2024-08-11 22:21:36,799 INFO    SenderThread:12024 [dir_watcher.py:__init__():211] watching files in: /root/autodl-tmp/GREAD/src/wandb/run-20240811_222135-48mgxej5/files
+2024-08-11 22:21:36,799 INFO    SenderThread:12024 [sender.py:_start_run_threads():1188] run started: 48mgxej5 with start time 1723386095.567156
+2024-08-11 22:21:36,813 DEBUG   HandlerThread:12024 [handler.py:handle_request():158] handle_request: check_version
+2024-08-11 22:21:36,813 DEBUG   SenderThread:12024 [sender.py:send_request():406] send_request: check_version
+2024-08-11 22:21:41,571 INFO    MainThread:12024 [internal.py:handle_exit():75] Internal process exited

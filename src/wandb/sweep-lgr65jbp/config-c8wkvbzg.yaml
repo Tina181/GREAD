@@ -1,0 +1,28 @@
+wandb_version: 1
+
+XN_activation:
+  value: false
+alpha_dim:
+  value: vc
+beta_dim:
+  value: vc
+data_norm:
+  value: rw
+dataset:
+  value: Cora
+epoch:
+  value: 200
+hidden_dim:
+  value: 32
+m2_mlp:
+  value: true
+method:
+  value: euler
+self_loop_weight:
+  value: 0
+step_size:
+  value: 0.45
+time:
+  value: 2.36
+use_mlp:
+  value: false

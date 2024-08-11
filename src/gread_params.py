@@ -1,6 +1,6 @@
 import argparse
 """
-
+add args: --use_best_params  ---->using the best parameters found in the search process
 """
 best_params_dict = {
 'texas': {'reaction_term':'bspm', 'alpha_dim':'sc', 'beta_dim':'vc', 'beta_diag':True, 
@@ -46,7 +46,7 @@ best_params_dict = {
            },
 # 将method由rk4暂时改成euler
 'Cora': {'reaction_term':'bspm', 'alpha_dim':'vc', 'beta_dim':'vc', 'beta_diag':True, 
-          'method':'euler', 'time': 3.790184078169178,'step_size':0.5,
+          'method':'rk4', 'time': 3.790184078169178,'step_size':0.5,
           'epoch':200, 'lr': 0.011402915506754104 ,'decay': 0.008014968630105014,
           'block':'attention', 'hidden_dim': 64, 'data_norm':'rw', 'self_loop_weight':1,
           'input_dropout': 0.5043839651430236, 'dropout': 0.4145754297432822,

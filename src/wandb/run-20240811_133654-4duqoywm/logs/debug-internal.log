@@ -1,0 +1,688 @@
+2024-08-11 13:36:54,787 INFO    StreamThr :5383 [internal.py:wandb_internal():86] W&B internal server running at pid: 5383, started at: 2024-08-11 13:36:54.786830
+2024-08-11 13:36:54,789 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status
+2024-08-11 13:36:54,794 INFO    WriterThread:5383 [datastore.py:open_for_write():87] open: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/run-4duqoywm.wandb
+2024-08-11 13:36:54,795 DEBUG   SenderThread:5383 [sender.py:send():382] send: header
+2024-08-11 13:36:54,797 DEBUG   SenderThread:5383 [sender.py:send():382] send: run
+2024-08-11 13:36:56,323 INFO    SenderThread:5383 [dir_watcher.py:__init__():211] watching files in: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files
+2024-08-11 13:36:56,323 INFO    SenderThread:5383 [sender.py:_start_run_threads():1136] run started: 4duqoywm with start time 1723354614.78685
+2024-08-11 13:36:56,336 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: check_version
+2024-08-11 13:36:56,337 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: check_version
+2024-08-11 13:37:01,337 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: keepalive
+2024-08-11 13:37:01,338 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:01,344 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: run_start
+2024-08-11 13:37:01,358 DEBUG   HandlerThread:5383 [system_info.py:__init__():27] System info init
+2024-08-11 13:37:01,358 DEBUG   HandlerThread:5383 [system_info.py:__init__():42] System info init done
+2024-08-11 13:37:01,358 INFO    HandlerThread:5383 [system_monitor.py:start():194] Starting system monitor
+2024-08-11 13:37:01,358 INFO    SystemMonitor:5383 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-08-11 13:37:01,359 INFO    HandlerThread:5383 [system_monitor.py:probe():214] Collecting system info
+2024-08-11 13:37:01,359 INFO    SystemMonitor:5383 [interfaces.py:start():190] Started cpu monitoring
+2024-08-11 13:37:01,360 INFO    SystemMonitor:5383 [interfaces.py:start():190] Started disk monitoring
+2024-08-11 13:37:01,361 INFO    SystemMonitor:5383 [interfaces.py:start():190] Started gpu monitoring
+2024-08-11 13:37:01,362 INFO    SystemMonitor:5383 [interfaces.py:start():190] Started memory monitoring
+2024-08-11 13:37:01,363 INFO    SystemMonitor:5383 [interfaces.py:start():190] Started network monitoring
+2024-08-11 13:37:01,375 DEBUG   HandlerThread:5383 [system_info.py:probe():151] Probing system
+2024-08-11 13:37:01,382 DEBUG   HandlerThread:5383 [system_info.py:_probe_git():136] Probing git
+2024-08-11 13:37:01,388 DEBUG   HandlerThread:5383 [system_info.py:_probe_git():144] Probing git done
+2024-08-11 13:37:01,389 DEBUG   HandlerThread:5383 [system_info.py:probe():199] Probing system done
+2024-08-11 13:37:01,389 DEBUG   HandlerThread:5383 [system_monitor.py:probe():223] {'os': 'Linux-5.4.0-149-generic-x86_64-with-glibc2.17', 'python': '3.8.10', 'heartbeatAt': '2024-08-11T05:37:01.375480', 'startedAt': '2024-08-11T05:36:54.780497', 'docker': None, 'cuda': None, 'args': ('--wandb',), 'state': 'running', 'program': 'run_GNN.py', 'codePathLocal': 'run_GNN.py', 'codePath': 'run_GNN.py', 'git': {'remote': None, 'commit': None}, 'email': '1397575949@qq.com', 'root': '/root/autodl-tmp/GREAD/src', 'host': 'autodl-container-ef2f42b76e-2c9478c5', 'username': 'root', 'executable': '/root/miniconda3/bin/python', 'cpu_count': 26, 'cpu_count_logical': 52, 'cpu_freq': {'current': 2095.077999999998, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}, {'current': 2095.078, 'min': 0.0, 'max': 0.0}], 'disk': {'/': {'total': 30.0, 'used': 19.49908447265625}}, 'gpu': 'Tesla V100-PCIE-32GB', 'gpu_count': 1, 'gpu_devices': [{'name': 'Tesla V100-PCIE-32GB', 'memory_total': 34359738368}], 'memory': {'total': 214.2982177734375}}
+2024-08-11 13:37:01,389 INFO    HandlerThread:5383 [system_monitor.py:probe():224] Finished collecting system info
+2024-08-11 13:37:01,389 INFO    HandlerThread:5383 [system_monitor.py:probe():227] Publishing system info
+2024-08-11 13:37:01,389 DEBUG   HandlerThread:5383 [system_info.py:_save_conda():208] Saving list of conda packages installed into the current environment
+2024-08-11 13:37:02,327 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_created():271] file/dir created: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/conda-environment.yaml
+2024-08-11 13:37:05,326 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/conda-environment.yaml
+2024-08-11 13:37:05,348 DEBUG   HandlerThread:5383 [system_info.py:_save_conda():220] Saving conda packages done
+2024-08-11 13:37:05,349 INFO    HandlerThread:5383 [system_monitor.py:probe():229] Finished publishing system info
+2024-08-11 13:37:05,359 DEBUG   SenderThread:5383 [sender.py:send():382] send: files
+2024-08-11 13:37:05,359 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-metadata.json with policy now
+2024-08-11 13:37:05,366 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: python_packages
+2024-08-11 13:37:05,366 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: python_packages
+2024-08-11 13:37:05,367 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: stop_status
+2024-08-11 13:37:05,367 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: stop_status
+2024-08-11 13:37:05,371 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: internal_messages
+2024-08-11 13:37:06,192 DEBUG   SenderThread:5383 [sender.py:send():382] send: telemetry
+2024-08-11 13:37:06,193 DEBUG   SenderThread:5383 [sender.py:send():382] send: metric
+2024-08-11 13:37:06,193 DEBUG   SenderThread:5383 [sender.py:send():382] send: telemetry
+2024-08-11 13:37:06,326 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_created():271] file/dir created: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-metadata.json
+2024-08-11 13:37:06,327 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_created():271] file/dir created: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/requirements.txt
+2024-08-11 13:37:06,327 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_created():271] file/dir created: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:06,899 INFO    wandb-upload_0:5383 [upload_job.py:push():131] Uploaded file /tmp/tmp3zac2y5twandb/i23nkgzm-wandb-metadata.json
+2024-08-11 13:37:07,194 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:08,327 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:12,329 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:12,917 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:13,231 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:13,233 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:13,233 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:13,234 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:13,329 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:13,329 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_created():271] file/dir created: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:13,483 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:13,484 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:13,485 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:13,485 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:13,745 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:13,747 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:13,747 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:13,748 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:14,006 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:14,008 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:14,008 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:14,009 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:14,263 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:14,265 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:14,265 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:14,266 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:14,329 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:14,330 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:14,559 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:14,561 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:14,561 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:14,562 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:14,855 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:14,856 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:14,857 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:14,857 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:15,198 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:15,200 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:15,200 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:15,201 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:15,330 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:15,563 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:15,565 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:15,565 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:15,565 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:15,937 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:15,938 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:15,938 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:15,939 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:16,330 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:16,330 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:16,346 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:16,348 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:16,348 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:16,348 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:16,773 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:16,774 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:16,774 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:16,775 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:17,235 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:17,237 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:17,237 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:17,238 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:17,330 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:17,758 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:17,759 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:17,759 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:17,760 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:18,310 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:18,311 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:18,312 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:18,312 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:18,312 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:18,331 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:18,331 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:18,805 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:18,807 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:18,807 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:18,808 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:19,331 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:19,342 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:19,344 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:19,344 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:19,344 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:19,912 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:19,914 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:19,914 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:19,914 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:20,332 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:20,332 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:20,368 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: internal_messages
+2024-08-11 13:37:20,368 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: stop_status
+2024-08-11 13:37:20,369 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: stop_status
+2024-08-11 13:37:20,489 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:20,709 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:20,710 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:20,710 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:21,084 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:21,085 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:21,086 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:21,086 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:21,332 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:21,664 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:21,666 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:21,666 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:21,666 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:22,279 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:22,281 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:22,281 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:22,281 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:22,332 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:22,333 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:22,889 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:22,891 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:22,891 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:22,892 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:23,334 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:23,576 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:23,578 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:23,578 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:23,579 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:23,579 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:24,283 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:24,284 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:24,285 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:24,286 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:24,334 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:24,335 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:24,918 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:24,919 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:24,920 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:24,921 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:25,335 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:25,551 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:25,553 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:25,553 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:25,554 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:26,209 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:26,210 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:26,211 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:26,211 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:26,335 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:26,336 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:26,826 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:26,828 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:26,828 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:26,829 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:27,336 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:27,516 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:27,518 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:27,518 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:27,519 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:28,161 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:28,163 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:28,163 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:28,163 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:28,336 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:28,336 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:28,804 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:28,805 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:28,811 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:29,402 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:29,403 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:29,432 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:29,433 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:29,433 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:29,434 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:30,046 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:30,048 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:30,048 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:30,049 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:30,337 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/config.yaml
+2024-08-11 13:37:30,337 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:30,337 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:30,687 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:30,689 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:30,689 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:30,690 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:31,288 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:31,289 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:31,290 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:31,290 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:31,337 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:31,917 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:31,919 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:31,919 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:31,919 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:32,338 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:32,338 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:32,547 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:32,549 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:32,549 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:32,549 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:33,128 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:33,129 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:33,130 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:33,130 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:33,338 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:33,767 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:33,768 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:33,769 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:33,769 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:34,338 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:34,339 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:34,407 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:34,409 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:34,409 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:34,409 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:34,410 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:34,972 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:34,973 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:34,974 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:34,974 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:35,339 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:35,367 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: stop_status
+2024-08-11 13:37:35,368 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: internal_messages
+2024-08-11 13:37:35,368 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: stop_status
+2024-08-11 13:37:35,588 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:35,744 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:35,744 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:35,745 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:36,212 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:36,214 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:36,214 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:36,215 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:36,339 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:36,340 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:36,802 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:36,804 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:36,804 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:36,805 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:37,337 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:37,338 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:37,339 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:37,339 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:37,340 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:37,917 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:37,919 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:37,919 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:37,920 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:38,341 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:38,341 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:38,450 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:38,451 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:38,452 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:38,452 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:39,003 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:39,005 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:39,005 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:39,005 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:39,341 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:39,568 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:39,570 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:39,570 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:39,570 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:39,571 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:40,105 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:40,107 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:40,107 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:40,107 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:40,342 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:40,342 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:40,626 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:40,627 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:40,628 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:40,628 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:41,165 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:41,166 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:41,167 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:41,167 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:41,342 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:41,659 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:41,661 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:41,661 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:41,662 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:42,223 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:42,225 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:42,225 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:42,226 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:42,342 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:42,343 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:42,776 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:42,777 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:42,778 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:42,778 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:43,343 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:43,343 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:43,345 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:43,345 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:43,345 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:43,882 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:43,883 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:43,884 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:43,884 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:44,343 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:44,343 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:44,364 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:44,366 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:44,366 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:44,367 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:44,890 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:44,892 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:44,892 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:44,892 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:44,893 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:45,343 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:45,384 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:45,385 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:45,386 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:45,386 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:45,854 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:45,855 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:45,855 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:45,856 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:46,344 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:46,344 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:46,370 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:46,371 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:46,371 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:46,372 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:46,880 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:46,881 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:46,881 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:46,882 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:47,344 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:47,360 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:47,361 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:47,362 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:47,362 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:47,821 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:47,823 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:47,823 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:47,823 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:48,323 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:48,324 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:48,324 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:48,325 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:48,345 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:48,345 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:48,822 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:48,825 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:48,825 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:48,825 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:49,294 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:49,295 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:49,295 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:49,296 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:49,345 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:49,733 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:49,734 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:49,734 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:49,735 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:50,206 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:50,207 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:50,208 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:50,208 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:50,208 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:50,345 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:50,346 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:50,367 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: stop_status
+2024-08-11 13:37:50,367 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: stop_status
+2024-08-11 13:37:50,371 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: internal_messages
+2024-08-11 13:37:50,662 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:50,738 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:50,739 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:50,739 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:51,107 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:51,109 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:51,110 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:51,110 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:51,346 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:51,566 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:51,568 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:51,568 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:51,569 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:51,993 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:51,994 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:51,995 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:51,995 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:52,346 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:52,347 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:52,464 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:52,466 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:52,466 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:52,467 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:52,888 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:52,889 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:52,890 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:52,890 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:53,336 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:53,337 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:53,338 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:53,339 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:53,346 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:53,819 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:53,821 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:53,821 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:53,822 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:54,255 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:54,257 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:54,257 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:54,258 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:54,347 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:54,347 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:54,693 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:54,695 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:54,695 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:54,696 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:55,173 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:55,175 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:55,175 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:55,175 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:55,347 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:55,639 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:55,641 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:55,641 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:55,641 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:37:55,642 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:56,092 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:56,093 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:56,093 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:56,094 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:56,348 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:56,348 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:56,526 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:56,527 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:56,527 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:56,528 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:56,929 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:56,932 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:56,932 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:56,933 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:57,348 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:57,384 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:57,385 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:57,386 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:57,386 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:57,831 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:57,832 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:57,833 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:57,833 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:58,267 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:58,268 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:58,268 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:58,269 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:58,350 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:58,350 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:37:58,692 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:58,693 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:58,693 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:58,694 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:59,174 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:59,176 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:59,176 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:59,177 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:37:59,350 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:37:59,635 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:37:59,636 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:37:59,637 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:37:59,637 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:00,083 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:38:00,085 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:38:00,085 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:38:00,085 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:00,354 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:38:00,354 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:38:00,535 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:38:00,536 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:38:00,536 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:38:00,537 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:00,976 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:38:00,978 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:38:00,978 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:38:00,978 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:38:00,979 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:01,354 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:38:01,363 DEBUG   SystemMonitor:5383 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-08-11 13:38:01,366 DEBUG   SenderThread:5383 [sender.py:send():382] send: stats
+2024-08-11 13:38:01,396 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:38:01,397 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:38:01,397 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:38:01,398 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:01,876 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:38:01,878 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:38:01,878 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:38:01,879 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:02,314 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:38:02,315 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:38:02,315 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:38:02,316 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:02,355 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:38:02,732 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:38:02,734 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:38:02,734 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:38:02,734 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:02,761 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: partial_history
+2024-08-11 13:38:02,763 DEBUG   SenderThread:5383 [sender.py:send():382] send: history
+2024-08-11 13:38:02,763 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: summary_record
+2024-08-11 13:38:02,764 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:02,764 DEBUG   SenderThread:5383 [sender.py:send():382] send: telemetry
+2024-08-11 13:38:02,764 DEBUG   SenderThread:5383 [sender.py:send():382] send: exit
+2024-08-11 13:38:02,764 INFO    SenderThread:5383 [sender.py:send_exit():589] handling exit code: 0
+2024-08-11 13:38:02,764 INFO    SenderThread:5383 [sender.py:send_exit():591] handling runtime: 61
+2024-08-11 13:38:02,765 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:02,765 INFO    SenderThread:5383 [sender.py:send_exit():597] send defer
+2024-08-11 13:38:02,765 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:02,765 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 0
+2024-08-11 13:38:02,766 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:02,766 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 0
+2024-08-11 13:38:02,766 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 1
+2024-08-11 13:38:02,766 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:02,766 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 1
+2024-08-11 13:38:02,766 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:02,766 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 1
+2024-08-11 13:38:02,766 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 2
+2024-08-11 13:38:02,766 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:02,766 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 2
+2024-08-11 13:38:02,766 INFO    HandlerThread:5383 [system_monitor.py:finish():203] Stopping system monitor
+2024-08-11 13:38:02,767 DEBUG   SystemMonitor:5383 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-08-11 13:38:02,767 INFO    HandlerThread:5383 [interfaces.py:finish():202] Joined cpu monitor
+2024-08-11 13:38:02,767 DEBUG   SystemMonitor:5383 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-08-11 13:38:02,768 INFO    HandlerThread:5383 [interfaces.py:finish():202] Joined disk monitor
+2024-08-11 13:38:02,781 INFO    HandlerThread:5383 [interfaces.py:finish():202] Joined gpu monitor
+2024-08-11 13:38:02,782 INFO    HandlerThread:5383 [interfaces.py:finish():202] Joined memory monitor
+2024-08-11 13:38:02,782 INFO    HandlerThread:5383 [interfaces.py:finish():202] Joined network monitor
+2024-08-11 13:38:02,782 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:02,782 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 2
+2024-08-11 13:38:02,782 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 3
+2024-08-11 13:38:02,783 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:02,783 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 3
+2024-08-11 13:38:02,783 DEBUG   SenderThread:5383 [sender.py:send():382] send: stats
+2024-08-11 13:38:02,784 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:02,784 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 3
+2024-08-11 13:38:02,784 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 4
+2024-08-11 13:38:02,784 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:02,784 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 4
+2024-08-11 13:38:02,784 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:02,784 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 4
+2024-08-11 13:38:02,784 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 5
+2024-08-11 13:38:02,784 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:02,784 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 5
+2024-08-11 13:38:02,785 DEBUG   SenderThread:5383 [sender.py:send():382] send: summary
+2024-08-11 13:38:02,785 INFO    SenderThread:5383 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-08-11 13:38:02,786 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:02,786 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 5
+2024-08-11 13:38:02,786 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 6
+2024-08-11 13:38:02,786 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:02,786 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 6
+2024-08-11 13:38:02,786 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:02,786 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 6
+2024-08-11 13:38:02,791 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: status_report
+2024-08-11 13:38:03,425 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:38:03,426 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:38:03,426 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 7
+2024-08-11 13:38:03,427 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:03,427 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 7
+2024-08-11 13:38:03,427 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:03,427 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 7
+2024-08-11 13:38:03,764 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: poll_exit
+2024-08-11 13:38:04,426 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/config.yaml
+2024-08-11 13:38:04,426 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:38:04,980 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 8
+2024-08-11 13:38:04,980 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: poll_exit
+2024-08-11 13:38:04,980 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:04,981 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 8
+2024-08-11 13:38:04,981 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:04,981 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 8
+2024-08-11 13:38:04,981 INFO    SenderThread:5383 [job_builder.py:build():296] Attempting to build job artifact
+2024-08-11 13:38:04,982 INFO    SenderThread:5383 [job_builder.py:_get_source_type():437] no source found
+2024-08-11 13:38:04,983 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 9
+2024-08-11 13:38:04,983 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:04,983 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 9
+2024-08-11 13:38:04,983 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:04,983 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 9
+2024-08-11 13:38:04,983 INFO    SenderThread:5383 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-08-11 13:38:05,426 INFO    Thread-12 :5383 [dir_watcher.py:_on_file_modified():288] file/dir modified: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:38:05,427 INFO    SenderThread:5383 [dir_watcher.py:finish():388] scan: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files
+2024-08-11 13:38:05,427 INFO    SenderThread:5383 [dir_watcher.py:finish():402] scan save: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/config.yaml config.yaml
+2024-08-11 13:38:05,428 INFO    SenderThread:5383 [dir_watcher.py:finish():402] scan save: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/conda-environment.yaml conda-environment.yaml
+2024-08-11 13:38:05,431 INFO    SenderThread:5383 [dir_watcher.py:finish():402] scan save: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-metadata.json wandb-metadata.json
+2024-08-11 13:38:05,435 INFO    SenderThread:5383 [dir_watcher.py:finish():402] scan save: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/requirements.txt requirements.txt
+2024-08-11 13:38:05,436 INFO    SenderThread:5383 [dir_watcher.py:finish():402] scan save: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log output.log
+2024-08-11 13:38:05,438 INFO    SenderThread:5383 [dir_watcher.py:finish():402] scan save: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json wandb-summary.json
+2024-08-11 13:38:05,444 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 10
+2024-08-11 13:38:05,447 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:05,448 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 10
+2024-08-11 13:38:05,449 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:05,449 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 10
+2024-08-11 13:38:05,449 INFO    SenderThread:5383 [file_pusher.py:finish():172] shutting down file pusher
+2024-08-11 13:38:05,765 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: poll_exit
+2024-08-11 13:38:05,765 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: poll_exit
+2024-08-11 13:38:06,641 INFO    wandb-upload_0:5383 [upload_job.py:push():131] Uploaded file /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/config.yaml
+2024-08-11 13:38:06,765 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: poll_exit
+2024-08-11 13:38:06,766 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: poll_exit
+2024-08-11 13:38:07,182 INFO    wandb-upload_4:5383 [upload_job.py:push():131] Uploaded file /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/wandb-summary.json
+2024-08-11 13:38:07,211 INFO    wandb-upload_1:5383 [upload_job.py:push():131] Uploaded file /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/conda-environment.yaml
+2024-08-11 13:38:07,358 INFO    wandb-upload_2:5383 [upload_job.py:push():131] Uploaded file /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/requirements.txt
+2024-08-11 13:38:07,445 INFO    wandb-upload_3:5383 [upload_job.py:push():131] Uploaded file /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/files/output.log
+2024-08-11 13:38:07,645 INFO    Thread-11 :5383 [sender.py:transition_state():617] send defer: 11
+2024-08-11 13:38:07,646 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:07,646 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 11
+2024-08-11 13:38:07,647 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:07,647 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 11
+2024-08-11 13:38:07,647 INFO    SenderThread:5383 [file_pusher.py:join():178] waiting for file pusher
+2024-08-11 13:38:07,647 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 12
+2024-08-11 13:38:07,648 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:07,648 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 12
+2024-08-11 13:38:07,648 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:07,648 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 12
+2024-08-11 13:38:07,648 INFO    SenderThread:5383 [file_stream.py:finish():595] file stream finish called
+2024-08-11 13:38:07,766 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: poll_exit
+2024-08-11 13:38:07,977 INFO    SenderThread:5383 [file_stream.py:finish():599] file stream finish is done
+2024-08-11 13:38:07,977 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 13
+2024-08-11 13:38:07,977 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: poll_exit
+2024-08-11 13:38:07,977 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:07,978 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 13
+2024-08-11 13:38:07,978 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:07,978 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 13
+2024-08-11 13:38:07,978 INFO    SenderThread:5383 [sender.py:transition_state():617] send defer: 14
+2024-08-11 13:38:07,979 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: defer
+2024-08-11 13:38:07,979 INFO    HandlerThread:5383 [handler.py:handle_request_defer():172] handle defer: 14
+2024-08-11 13:38:07,979 DEBUG   SenderThread:5383 [sender.py:send():382] send: final
+2024-08-11 13:38:07,979 DEBUG   SenderThread:5383 [sender.py:send():382] send: footer
+2024-08-11 13:38:07,979 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: defer
+2024-08-11 13:38:07,979 INFO    SenderThread:5383 [sender.py:send_request_defer():613] handle sender defer: 14
+2024-08-11 13:38:07,980 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: poll_exit
+2024-08-11 13:38:07,980 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: poll_exit
+2024-08-11 13:38:07,981 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: internal_messages
+2024-08-11 13:38:07,982 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: server_info
+2024-08-11 13:38:07,982 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: get_summary
+2024-08-11 13:38:07,982 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: sampled_history
+2024-08-11 13:38:07,984 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: job_info
+2024-08-11 13:38:07,985 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: server_info
+2024-08-11 13:38:08,287 DEBUG   SenderThread:5383 [sender.py:send_request():409] send_request: job_info
+2024-08-11 13:38:08,289 DEBUG   HandlerThread:5383 [handler.py:handle_request():146] handle_request: shutdown
+2024-08-11 13:38:08,289 INFO    HandlerThread:5383 [handler.py:finish():869] shutting down handler
+2024-08-11 13:38:08,985 INFO    WriterThread:5383 [datastore.py:close():296] close: /root/autodl-tmp/GREAD/src/wandb/run-20240811_133654-4duqoywm/run-4duqoywm.wandb
+2024-08-11 13:38:09,288 INFO    SenderThread:5383 [sender.py:finish():1572] shutting down sender
+2024-08-11 13:38:09,288 INFO    SenderThread:5383 [file_pusher.py:finish():172] shutting down file pusher
+2024-08-11 13:38:09,288 INFO    SenderThread:5383 [file_pusher.py:join():178] waiting for file pusher

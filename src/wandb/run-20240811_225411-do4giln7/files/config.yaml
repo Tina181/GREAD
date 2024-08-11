@@ -1,0 +1,438 @@
+wandb_version: 1
+
+use_best_params:
+  desc: null
+  value: true
+gpu:
+  desc: null
+  value: 0
+epoch:
+  desc: null
+  value: 200
+patience:
+  desc: null
+  value: null
+optimizer:
+  desc: null
+  value: adam
+lr:
+  desc: null
+  value: 0.011402915506754104
+decay:
+  desc: null
+  value: 0.008014968630105014
+dataset:
+  desc: null
+  value: Cora
+data_norm:
+  desc: null
+  value: rw
+self_loop_weight:
+  desc: null
+  value: 0
+use_labels:
+  desc: null
+  value: false
+label_rate:
+  desc: null
+  value: 0.5
+planetoid_split:
+  desc: null
+  value: false
+geom_gcn_splits:
+  desc: null
+  value: false
+num_splits:
+  desc: null
+  value: 10
+not_lcc:
+  desc: null
+  value: true
+hetero_SL:
+  desc: null
+  value: false
+hetero_undir:
+  desc: null
+  value: false
+block:
+  desc: null
+  value: attention
+function:
+  desc: null
+  value: gread
+hidden_dim:
+  desc: null
+  value: 256
+fc_out:
+  desc: null
+  value: false
+input_dropout:
+  desc: null
+  value: 0.5043839651430236
+dropout:
+  desc: null
+  value: 0.4145754297432822
+batch_norm:
+  desc: null
+  value: false
+alpha:
+  desc: null
+  value: 1.0
+alpha_dim:
+  desc: null
+  value: vc
+no_alpha_sigmoid:
+  desc: null
+  value: false
+source_dim:
+  desc: null
+  value: sc
+beta_dim:
+  desc: null
+  value: vc
+use_mlp:
+  desc: null
+  value: false
+add_source:
+  desc: null
+  value: false
+XN_activation:
+  desc: null
+  value: true
+m2_mlp:
+  desc: null
+  value: false
+time:
+  desc: null
+  value: 2.12
+augment:
+  desc: null
+  value: false
+method:
+  desc: null
+  value: euler
+step_size:
+  desc: null
+  value: 0.35000000000000003
+max_iters:
+  desc: null
+  value: 100
+adjoint_method:
+  desc: null
+  value: adaptive_heun
+adjoint:
+  desc: null
+  value: false
+adjoint_step_size:
+  desc: null
+  value: 1
+tol_scale:
+  desc: null
+  value: 1.0
+tol_scale_adjoint:
+  desc: null
+  value: 1.0
+max_nfe:
+  desc: null
+  value: 5000
+no_early:
+  desc: null
+  value: true
+earlystopxT:
+  desc: null
+  value: 3
+max_test_steps:
+  desc: null
+  value: 100
+jacobian_norm2:
+  desc: null
+  value: null
+total_deriv:
+  desc: null
+  value: null
+kinetic_energy:
+  desc: null
+  value: null
+directional_penalty:
+  desc: null
+  value: null
+leaky_relu_slope:
+  desc: null
+  value: 0.2
+attention_dropout:
+  desc: null
+  value: 0.0
+heads:
+  desc: null
+  value: 1
+attention_norm_idx:
+  desc: null
+  value: 0
+attention_dim:
+  desc: null
+  value: 64
+mix_features:
+  desc: null
+  value: false
+reweight_attention:
+  desc: null
+  value: false
+attention_type:
+  desc: null
+  value: scaled_dot
+square_plus:
+  desc: null
+  value: false
+gcn_fixed:
+  desc: null
+  value: 'False'
+gcn_enc_dec:
+  desc: null
+  value: 'False'
+gcn_non_lin:
+  desc: null
+  value: 'False'
+gcn_symm:
+  desc: null
+  value: 'False'
+gcn_bias:
+  desc: null
+  value: 'False'
+gcn_mid_dropout:
+  desc: null
+  value: 'False'
+gcn_params:
+  desc: null
+  value: null
+gcn_params_idx:
+  desc: null
+  value: 0
+rewiring:
+  desc: null
+  value: null
+gdc_method:
+  desc: null
+  value: ppr
+gdc_sparsification:
+  desc: null
+  value: topk
+gdc_k:
+  desc: null
+  value: 64
+gdc_threshold:
+  desc: null
+  value: 0.0001
+gdc_avg_degree:
+  desc: null
+  value: 64
+ppr_alpha:
+  desc: null
+  value: 0.05
+heat_time:
+  desc: null
+  value: 3.0
+att_samp_pct:
+  desc: null
+  value: 1
+use_flux:
+  desc: null
+  value: false
+exact:
+  desc: null
+  value: false
+M_nodes:
+  desc: null
+  value: 64
+new_edges:
+  desc: null
+  value: random
+sparsify:
+  desc: null
+  value: S_hat
+threshold_type:
+  desc: null
+  value: topk_adj
+rw_addD:
+  desc: null
+  value: 0.02
+rw_rmvR:
+  desc: null
+  value: 0.02
+rewire_KNN:
+  desc: null
+  value: false
+rewire_KNN_T:
+  desc: null
+  value: T0
+rewire_KNN_epoch:
+  desc: null
+  value: 5
+rewire_KNN_k:
+  desc: null
+  value: 64
+rewire_KNN_sym:
+  desc: null
+  value: false
+KNN_online:
+  desc: null
+  value: false
+KNN_online_reps:
+  desc: null
+  value: 4
+KNN_space:
+  desc: null
+  value: pos_distance
+pos_enc_csv:
+  desc: null
+  value: false
+beltrami:
+  desc: null
+  value: false
+fa_layer:
+  desc: null
+  value: false
+pos_enc_type:
+  desc: null
+  value: GDC
+pos_enc_orientation:
+  desc: null
+  value: row
+feat_hidden_dim:
+  desc: null
+  value: 64
+pos_enc_hidden_dim:
+  desc: null
+  value: 32
+edge_sampling:
+  desc: null
+  value: false
+edge_sampling_T:
+  desc: null
+  value: T0
+edge_sampling_epoch:
+  desc: null
+  value: 5
+edge_sampling_add:
+  desc: null
+  value: 0.64
+edge_sampling_add_type:
+  desc: null
+  value: importance
+edge_sampling_rmv:
+  desc: null
+  value: 0.32
+edge_sampling_sym:
+  desc: null
+  value: false
+edge_sampling_online:
+  desc: null
+  value: false
+edge_sampling_online_reps:
+  desc: null
+  value: 4
+edge_sampling_space:
+  desc: null
+  value: attention
+reaction_term:
+  desc: null
+  value: aggdiff-log
+beta_diag:
+  desc: null
+  value: true
+trusted_mask:
+  desc: null
+  value: false
+noise:
+  desc: null
+  value: 0.0
+noise_pos:
+  desc: null
+  value: null
+prediffuse:
+  desc: null
+  value: false
+x0:
+  desc: null
+  value: false
+nox0:
+  desc: null
+  value: false
+icxb:
+  desc: null
+  value: 1.0
+source_scale:
+  desc: null
+  value: 1.0
+alltime:
+  desc: null
+  value: false
+allnumtrain:
+  desc: null
+  value: false
+num_train_per_class:
+  desc: null
+  value: 20
+save_result:
+  desc: null
+  value: false
+wandb:
+  desc: null
+  value: true
+wandb_sweep:
+  desc: null
+  value: false
+wandb_entity:
+  desc: null
+  value: username
+wandb_project:
+  desc: null
+  value: grade
+wandb_run_name:
+  desc: null
+  value: null
+run_track_reports:
+  desc: null
+  value: false
+save_wandb_reports:
+  desc: null
+  value: false
+device:
+  desc: null
+  value: cuda:0
+_wandb:
+  desc: null
+  value:
+    python_version: 3.9.18
+    cli_version: 0.16.3
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1723388051.889053
+    t:
+      1:
+      - 1
+      - 5
+      - 53
+      - 55
+      - 77
+      2:
+      - 1
+      - 5
+      - 53
+      - 55
+      - 77
+      3:
+      - 2
+      - 7
+      - 16
+      - 23
+      - 37
+      4: 3.9.18
+      5: 0.16.3
+      8:
+      - 5
+      13: linux-x86_64
+    m:
+    - 1: epoch_step
+      6:
+      - 3

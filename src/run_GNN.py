@@ -149,7 +149,6 @@ def test(model, data, pos_encoding=None, opt=None):  # opt required for runtime 
         loss = lf(logits[data.train_mask], data.y.squeeze()[data.train_mask])
         wandb_log(data, model, opt, loss, accs[0], accs[1], accs[2], epoch)
         model.odeblock.odefunc.wandb_step = 0  # resets the wandbstep counter in function after eval forward pass
-
     return accs
 
 @torch.no_grad()
@@ -232,12 +231,15 @@ def main(cmd_opt):
     device = torch.device(f'cuda:{GPU_NUM}' if torch.cuda.is_available() else 'cpu')    # cuda
     opt['device'] = device
 
+    # wandb init and use wandb.config to sweep hyperparams
     if opt['wandb']:
         if 'wandb_run_name' in opt.keys():
-            wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
+            # wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
+            wandb_run = wandb.init(project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
         else:
-            wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True)
-        opt = wandb.config
+            # wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True)
+            wandb_run = wandb.init(project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
+        opt = wandb.config  # can sweep using wandb.config------> getting from sweep yaml file
         wandb.define_metric("epoch_step")  # Customize axes - https://docs.wandb.ai/guides/track/log
 
     dataset = get_dataset(opt, '../data', opt['not_lcc'])   # load dataset
@@ -510,7 +512,7 @@ if __name__ == '__main__':
     parser.add_argument('--wandb', action='store_true', help="flag if logging to wandb")
     parser.add_argument('--wandb_sweep', action='store_true',help="flag if sweeping")
     parser.add_argument('--wandb_entity', default="username", type=str)
-    parser.add_argument('--wandb_project', default="example", type=str)
+    parser.add_argument('--wandb_project', default="grade", type=str)
     parser.add_argument('--wandb_run_name', default=None, type=str)
     parser.add_argument('--run_track_reports', action='store_true', help="run_track_reports")
     parser.add_argument('--save_wandb_reports', action='store_true', help="save_wandb_reports")

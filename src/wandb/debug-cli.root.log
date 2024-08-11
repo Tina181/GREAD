@@ -3016,3 +3016,79 @@ wandb.errors.CommError: name required for project query (Error 400: Bad Request)
 	use_mlp: False
 2024-08-12 02:18:19 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep-cora-gauss --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=sc --beta_dim=vc --data_norm=rw --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=True --method=rk4 --reaction_term=aggdiff-gauss --self_loop_weight=1 --step_size=0.30000000000000004 --time=2.4 --use_mlp=False
 2024-08-12 02:18:24 INFO Running runs: ['8yakhmiw']
+2024-08-12 02:20:13 INFO Cleaning up finished run: 61sizohv
+2024-08-12 02:20:13 INFO Agent received command: run
+2024-08-12 02:20:13 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: rw
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-gat
+	self_loop_weight: 0
+	step_size: 0.25
+	time: 2.03
+	use_mlp: True
+2024-08-12 02:20:13 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=vc --data_norm=rw --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=True --method=euler --reaction_term=aggdiff-gat --self_loop_weight=0 --step_size=0.25 --time=2.03 --use_mlp=True
+2024-08-12 02:20:18 INFO Running runs: ['o0ohy1x1']
+2024-08-12 02:27:15 INFO Cleaning up finished run: vdwa0otp
+2024-08-12 02:27:16 INFO Agent received command: run
+2024-08-12 02:27:16 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: sc
+	beta_dim: sc
+	data_norm: rw
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: False
+	method: rk4
+	reaction_term: aggdiff-log
+	self_loop_weight: 1
+	step_size: 0.30000000000000004
+	time: 2.48
+	use_mlp: False
+2024-08-12 02:27:16 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=sc --beta_dim=sc --data_norm=rw --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=False --method=rk4 --reaction_term=aggdiff-log --self_loop_weight=1 --step_size=0.30000000000000004 --time=2.48 --use_mlp=False
+2024-08-12 02:27:21 INFO Running runs: ['ogurny5e']
+2024-08-12 02:27:22 INFO Cleaning up finished run: 8yakhmiw
+2024-08-12 02:27:23 INFO Agent received command: run
+2024-08-12 02:27:23 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 256
+	m2_mlp: True
+	method: rk4
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 0
+	step_size: 0.35000000000000003
+	time: 2.21
+	use_mlp: False
+2024-08-12 02:27:23 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep-cora-gauss --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=vc --data_norm=gcn --dataset=Cora --epoch=200 --hidden_dim=256 --m2_mlp=True --method=rk4 --reaction_term=aggdiff-gauss --self_loop_weight=0 --step_size=0.35000000000000003 --time=2.21 --use_mlp=False
+2024-08-12 02:27:28 INFO Running runs: ['qzjex139']
+2024-08-12 02:29:06 INFO Cleaning up finished run: o0ohy1x1
+2024-08-12 02:29:06 INFO Agent received command: run
+2024-08-12 02:29:06 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: sc
+	beta_dim: vc
+	data_norm: rw
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-gat
+	self_loop_weight: 1
+	step_size: 0.1
+	time: 2.03
+	use_mlp: False
+2024-08-12 02:29:06 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=sc --beta_dim=vc --data_norm=rw --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=True --method=euler --reaction_term=aggdiff-gat --self_loop_weight=1 --step_size=0.1 --time=2.03 --use_mlp=False
+2024-08-12 02:29:11 INFO Running runs: ['iczmhak2']

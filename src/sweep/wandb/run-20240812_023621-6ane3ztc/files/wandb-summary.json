@@ -1,0 +1,1 @@
+{"loss": NaN, "forward_nfe": 780, "backward_nfe": 0, "train_acc": 0.26, "val_acc": 0.12, "test_acc": 0.1686746987951807, "epoch_step": 0, "_timestamp": 1723401401.6950676, "_runtime": 19.978266716003418, "_step": 19, "_wandb": {"runtime": 13}}

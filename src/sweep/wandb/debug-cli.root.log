@@ -216,3 +216,174 @@ wandb.errors.CommError: Sweep wxy-ucas/src-sweep/texas-gat not found
 	use_mlp: False
 2024-08-12 01:56:09 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=vc --beta_dim=vc --data_norm=rw --dataset=texas --epoch=200 --hidden_dim=256 --m2_mlp=False --method=euler --reaction_term=aggdiff-log --self_loop_weight=0 --step_size=0.5 --time=2.2 --use_mlp=False
 2024-08-12 01:56:14 INFO Running runs: ['0suwm4lu']
+2024-08-12 01:59:53 INFO Cleaning up finished run: 0suwm4lu
+2024-08-12 01:59:54 INFO Agent received command: run
+2024-08-12 01:59:54 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: vc
+	beta_dim: sc
+	data_norm: rw
+	dataset: texas
+	epoch: 200
+	hidden_dim: 32
+	m2_mlp: True
+	method: rk4
+	reaction_term: aggdiff-log
+	self_loop_weight: 0
+	step_size: 0.5
+	time: 2.19
+	use_mlp: True
+2024-08-12 01:59:54 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=sc --data_norm=rw --dataset=texas --epoch=200 --hidden_dim=32 --m2_mlp=True --method=rk4 --reaction_term=aggdiff-log --self_loop_weight=0 --step_size=0.5 --time=2.19 --use_mlp=True
+2024-08-12 01:59:59 INFO Running runs: ['36r78ebt']
+2024-08-12 02:00:12 INFO Cleaning up finished run: xa0g5koh
+2024-08-12 02:00:13 INFO Agent received command: run
+2024-08-12 02:00:13 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: vc
+	beta_dim: sc
+	data_norm: rw
+	dataset: texas
+	epoch: 200
+	hidden_dim: 64
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 1
+	step_size: 0.45
+	time: 2.29
+	use_mlp: False
+2024-08-12 02:00:13 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=vc --beta_dim=sc --data_norm=rw --dataset=texas --epoch=200 --hidden_dim=64 --m2_mlp=True --method=euler --reaction_term=aggdiff-gauss --self_loop_weight=1 --step_size=0.45 --time=2.29 --use_mlp=False
+2024-08-12 02:00:18 INFO Running runs: ['l770xcgs']
+2024-08-12 02:03:40 INFO Cleaning up finished run: l770xcgs
+2024-08-12 02:03:40 INFO Agent received command: run
+2024-08-12 02:03:40 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: vc
+	beta_dim: sc
+	data_norm: gcn
+	dataset: texas
+	epoch: 200
+	hidden_dim: 64
+	m2_mlp: True
+	method: rk4
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 0
+	step_size: 0.35000000000000003
+	time: 2.19
+	use_mlp: True
+2024-08-12 02:03:40 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=vc --beta_dim=sc --data_norm=gcn --dataset=texas --epoch=200 --hidden_dim=64 --m2_mlp=True --method=rk4 --reaction_term=aggdiff-gauss --self_loop_weight=0 --step_size=0.35000000000000003 --time=2.19 --use_mlp=True
+2024-08-12 02:03:45 INFO Running runs: ['lqeewga3']
+2024-08-12 02:04:04 INFO Cleaning up finished run: 36r78ebt
+2024-08-12 02:04:04 INFO Agent received command: run
+2024-08-12 02:04:04 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: sc
+	beta_dim: vc
+	data_norm: rw
+	dataset: texas
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: True
+	method: rk4
+	reaction_term: aggdiff-log
+	self_loop_weight: 0
+	step_size: 0.1
+	time: 2.33
+	use_mlp: True
+2024-08-12 02:04:04 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=sc --beta_dim=vc --data_norm=rw --dataset=texas --epoch=200 --hidden_dim=128 --m2_mlp=True --method=rk4 --reaction_term=aggdiff-log --self_loop_weight=0 --step_size=0.1 --time=2.33 --use_mlp=True
+2024-08-12 02:04:09 INFO Running runs: ['mmuj2n91']
+2024-08-12 02:04:10 INFO Cleaning up finished run: 45fldru6
+2024-08-12 02:04:11 INFO Agent received command: run
+2024-08-12 02:04:11 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: sc
+	beta_dim: vc
+	data_norm: rw
+	dataset: texas
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: False
+	method: rk4
+	reaction_term: aggdiff-gat
+	self_loop_weight: 0
+	step_size: 0.25
+	time: 2.23
+	use_mlp: False
+2024-08-12 02:04:11 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=sc --beta_dim=vc --data_norm=rw --dataset=texas --epoch=200 --hidden_dim=128 --m2_mlp=False --method=rk4 --reaction_term=aggdiff-gat --self_loop_weight=0 --step_size=0.25 --time=2.23 --use_mlp=False
+2024-08-12 02:04:16 INFO Running runs: ['urwe9ha7']
+2024-08-12 02:08:42 INFO Cleaning up finished run: lqeewga3
+2024-08-12 02:08:43 INFO Agent received command: run
+2024-08-12 02:08:43 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: texas
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 1
+	step_size: 0.4
+	time: 2.15
+	use_mlp: False
+2024-08-12 02:08:43 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=vc --data_norm=gcn --dataset=texas --epoch=200 --hidden_dim=128 --m2_mlp=True --method=euler --reaction_term=aggdiff-gauss --self_loop_weight=1 --step_size=0.4 --time=2.15 --use_mlp=False
+2024-08-12 02:08:48 INFO Running runs: ['w6mgk7ta']
+2024-08-12 02:11:54 INFO Cleaning up finished run: w6mgk7ta
+2024-08-12 02:11:55 INFO Agent received command: run
+2024-08-12 02:11:55 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: texas
+	epoch: 200
+	hidden_dim: 64
+	m2_mlp: False
+	method: euler
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 1
+	step_size: 0.30000000000000004
+	time: 2.04
+	use_mlp: True
+2024-08-12 02:11:55 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=vc --beta_dim=vc --data_norm=gcn --dataset=texas --epoch=200 --hidden_dim=64 --m2_mlp=False --method=euler --reaction_term=aggdiff-gauss --self_loop_weight=1 --step_size=0.30000000000000004 --time=2.04 --use_mlp=True
+2024-08-12 02:12:00 INFO Running runs: ['ukyhws4u']
+2024-08-12 02:14:55 INFO Cleaning up finished run: ukyhws4u
+2024-08-12 02:14:56 INFO Agent received command: run
+2024-08-12 02:14:56 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: sc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: texas
+	epoch: 200
+	hidden_dim: 256
+	m2_mlp: True
+	method: rk4
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 1
+	step_size: 0.45
+	time: 2.5
+	use_mlp: True
+2024-08-12 02:14:56 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=sc --beta_dim=vc --data_norm=gcn --dataset=texas --epoch=200 --hidden_dim=256 --m2_mlp=True --method=rk4 --reaction_term=aggdiff-gauss --self_loop_weight=1 --step_size=0.45 --time=2.5 --use_mlp=True
+2024-08-12 02:15:01 INFO Running runs: ['wnuc1c0z']
+2024-08-12 02:17:54 INFO Cleaning up finished run: mmuj2n91
+2024-08-12 02:17:55 INFO Agent received command: run
+2024-08-12 02:17:55 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: vc
+	beta_dim: sc
+	data_norm: gcn
+	dataset: texas
+	epoch: 200
+	hidden_dim: 256
+	m2_mlp: False
+	method: rk4
+	reaction_term: aggdiff-log
+	self_loop_weight: 1
+	step_size: 0.2
+	time: 2.42
+	use_mlp: True
+2024-08-12 02:17:55 INFO About to run command: /usr/bin/env python ../run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=sc --data_norm=gcn --dataset=texas --epoch=200 --hidden_dim=256 --m2_mlp=False --method=rk4 --reaction_term=aggdiff-log --self_loop_weight=1 --step_size=0.2 --time=2.42 --use_mlp=True
+2024-08-12 02:18:00 INFO Running runs: ['jzbpv82w']

@@ -1,0 +1,1 @@
+{"loss": 0.20299945771694183, "forward_nfe": 2844, "backward_nfe": 0, "train_acc": 0.94, "val_acc": 0.52, "test_acc": 0.5783132530120482, "epoch_step": 0, "_timestamp": 1723400366.4013205, "_runtime": 907.484851360321, "_step": 1631}

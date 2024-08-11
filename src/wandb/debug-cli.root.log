@@ -2788,3 +2788,231 @@ wandb.errors.CommError: name required for project query (Error 400: Bad Request)
 	use_mlp: False
 2024-08-12 01:54:39 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=sc --data_norm=gcn --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=False --method=euler --reaction_term=aggdiff-gat --self_loop_weight=0 --step_size=0.45 --time=2.38 --use_mlp=False
 2024-08-12 01:54:44 INFO Running runs: ['b8oj4dwy']
+2024-08-12 01:59:51 INFO Cleaning up finished run: lmvixegy
+2024-08-12 01:59:52 INFO Agent received command: run
+2024-08-12 01:59:52 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 0
+	step_size: 0.4
+	time: 2.37
+	use_mlp: True
+2024-08-12 01:59:52 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep-cora-gauss --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=vc --beta_dim=vc --data_norm=gcn --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=True --method=euler --reaction_term=aggdiff-gauss --self_loop_weight=0 --step_size=0.4 --time=2.37 --use_mlp=True
+2024-08-12 01:59:57 INFO Running runs: ['mpr0evvq']
+2024-08-12 02:01:02 INFO Cleaning up finished run: b8oj4dwy
+2024-08-12 02:01:03 INFO Agent received command: run
+2024-08-12 02:01:03 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: vc
+	beta_dim: sc
+	data_norm: gcn
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 32
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-gat
+	self_loop_weight: 1
+	step_size: 0.25
+	time: 2.48
+	use_mlp: True
+2024-08-12 02:01:03 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=sc --data_norm=gcn --dataset=Cora --epoch=200 --hidden_dim=32 --m2_mlp=True --method=euler --reaction_term=aggdiff-gat --self_loop_weight=1 --step_size=0.25 --time=2.48 --use_mlp=True
+2024-08-12 02:01:08 INFO Running runs: ['a65n144z']
+2024-08-12 02:03:35 INFO Cleaning up finished run: mpr0evvq
+2024-08-12 02:03:36 INFO Agent received command: run
+2024-08-12 02:03:36 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: False
+	method: euler
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 0
+	step_size: 0.4
+	time: 2.22
+	use_mlp: False
+2024-08-12 02:03:36 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep-cora-gauss --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=vc --data_norm=gcn --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=False --method=euler --reaction_term=aggdiff-gauss --self_loop_weight=0 --step_size=0.4 --time=2.22 --use_mlp=False
+2024-08-12 02:03:41 INFO Running runs: ['j4vuyryl']
+2024-08-12 02:07:29 INFO Cleaning up finished run: i83p03kd
+2024-08-12 02:07:30 INFO Cleaning up finished run: j4vuyryl
+2024-08-12 02:07:30 INFO Agent received command: run
+2024-08-12 02:07:30 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: sc
+	beta_dim: sc
+	data_norm: rw
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 256
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-log
+	self_loop_weight: 1
+	step_size: 0.30000000000000004
+	time: 2.15
+	use_mlp: True
+2024-08-12 02:07:30 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=sc --beta_dim=sc --data_norm=rw --dataset=Cora --epoch=200 --hidden_dim=256 --m2_mlp=True --method=euler --reaction_term=aggdiff-log --self_loop_weight=1 --step_size=0.30000000000000004 --time=2.15 --use_mlp=True
+2024-08-12 02:07:30 INFO Agent received command: run
+2024-08-12 02:07:30 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 0
+	step_size: 0.30000000000000004
+	time: 2.19
+	use_mlp: False
+2024-08-12 02:07:30 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep-cora-gauss --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=vc --beta_dim=vc --data_norm=gcn --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=True --method=euler --reaction_term=aggdiff-gauss --self_loop_weight=0 --step_size=0.30000000000000004 --time=2.19 --use_mlp=False
+2024-08-12 02:07:35 INFO Running runs: ['zhtwa0k4']
+2024-08-12 02:07:35 INFO Running runs: ['rfimh4n2']
+2024-08-12 02:09:10 INFO Cleaning up finished run: a65n144z
+2024-08-12 02:09:11 INFO Agent received command: run
+2024-08-12 02:09:11 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: False
+	method: euler
+	reaction_term: aggdiff-gat
+	self_loop_weight: 0
+	step_size: 0.45
+	time: 2.32
+	use_mlp: True
+2024-08-12 02:09:11 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=vc --beta_dim=vc --data_norm=gcn --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=False --method=euler --reaction_term=aggdiff-gat --self_loop_weight=0 --step_size=0.45 --time=2.32 --use_mlp=True
+2024-08-12 02:09:16 INFO Running runs: ['qzq5czsc']
+2024-08-12 02:11:19 INFO Cleaning up finished run: rfimh4n2
+2024-08-12 02:11:20 INFO Agent received command: run
+2024-08-12 02:11:20 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: rw
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 1
+	step_size: 0.4
+	time: 2.33
+	use_mlp: True
+2024-08-12 02:11:20 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep-cora-gauss --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=vc --beta_dim=vc --data_norm=rw --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=True --method=euler --reaction_term=aggdiff-gauss --self_loop_weight=1 --step_size=0.4 --time=2.33 --use_mlp=True
+2024-08-12 02:11:25 INFO Running runs: ['b1yagqhb']
+2024-08-12 02:12:17 INFO Cleaning up finished run: zhtwa0k4
+2024-08-12 02:12:18 INFO Agent received command: run
+2024-08-12 02:12:18 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 64
+	m2_mlp: True
+	method: rk4
+	reaction_term: aggdiff-log
+	self_loop_weight: 0
+	step_size: 0.5
+	time: 2.07
+	use_mlp: False
+2024-08-12 02:12:18 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=vc --data_norm=gcn --dataset=Cora --epoch=200 --hidden_dim=64 --m2_mlp=True --method=rk4 --reaction_term=aggdiff-log --self_loop_weight=0 --step_size=0.5 --time=2.07 --use_mlp=False
+2024-08-12 02:12:23 INFO Running runs: ['g3qs87ty']
+2024-08-12 02:14:35 INFO Cleaning up finished run: qzq5czsc
+2024-08-12 02:14:36 INFO Agent received command: run
+2024-08-12 02:14:36 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: sc
+	beta_dim: vc
+	data_norm: rw
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: False
+	method: euler
+	reaction_term: aggdiff-gat
+	self_loop_weight: 1
+	step_size: 0.45
+	time: 2.29
+	use_mlp: True
+2024-08-12 02:14:36 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=sc --beta_dim=vc --data_norm=rw --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=False --method=euler --reaction_term=aggdiff-gat --self_loop_weight=1 --step_size=0.45 --time=2.29 --use_mlp=True
+2024-08-12 02:14:36 INFO Cleaning up finished run: b1yagqhb
+2024-08-12 02:14:37 INFO Agent received command: run
+2024-08-12 02:14:37 INFO Agent starting run with config:
+	XN_activation: False
+	alpha_dim: vc
+	beta_dim: sc
+	data_norm: rw
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: True
+	method: euler
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 0
+	step_size: 0.30000000000000004
+	time: 2.4
+	use_mlp: False
+2024-08-12 02:14:37 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep-cora-gauss --beta_diag=True --block=constant --use_best_params --XN_activation=False --alpha_dim=vc --beta_dim=sc --data_norm=rw --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=True --method=euler --reaction_term=aggdiff-gauss --self_loop_weight=0 --step_size=0.30000000000000004 --time=2.4 --use_mlp=False
+2024-08-12 02:14:41 INFO Running runs: ['61sizohv']
+2024-08-12 02:14:42 INFO Running runs: ['0tj5ra0y']
+2024-08-12 02:18:06 INFO Cleaning up finished run: g3qs87ty
+2024-08-12 02:18:07 INFO Agent received command: run
+2024-08-12 02:18:07 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: vc
+	beta_dim: vc
+	data_norm: gcn
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 256
+	m2_mlp: False
+	method: rk4
+	reaction_term: aggdiff-log
+	self_loop_weight: 1
+	step_size: 0.45
+	time: 2.25
+	use_mlp: False
+2024-08-12 02:18:07 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=vc --beta_dim=vc --data_norm=gcn --dataset=Cora --epoch=200 --hidden_dim=256 --m2_mlp=False --method=rk4 --reaction_term=aggdiff-log --self_loop_weight=1 --step_size=0.45 --time=2.25 --use_mlp=False
+2024-08-12 02:18:12 INFO Running runs: ['vdwa0otp']
+2024-08-12 02:18:18 INFO Cleaning up finished run: 0tj5ra0y
+2024-08-12 02:18:19 INFO Agent received command: run
+2024-08-12 02:18:19 INFO Agent starting run with config:
+	XN_activation: True
+	alpha_dim: sc
+	beta_dim: vc
+	data_norm: rw
+	dataset: Cora
+	epoch: 200
+	hidden_dim: 128
+	m2_mlp: True
+	method: rk4
+	reaction_term: aggdiff-gauss
+	self_loop_weight: 1
+	step_size: 0.30000000000000004
+	time: 2.4
+	use_mlp: False
+2024-08-12 02:18:19 INFO About to run command: /usr/bin/env python run_GNN_sweep.py --num_splits=10 --wandb --wandb_project=grade-sweep-cora-gauss --beta_diag=True --block=constant --use_best_params --XN_activation=True --alpha_dim=sc --beta_dim=vc --data_norm=rw --dataset=Cora --epoch=200 --hidden_dim=128 --m2_mlp=True --method=rk4 --reaction_term=aggdiff-gauss --self_loop_weight=1 --step_size=0.30000000000000004 --time=2.4 --use_mlp=False
+2024-08-12 02:18:24 INFO Running runs: ['8yakhmiw']

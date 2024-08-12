@@ -26,3 +26,10 @@ config: {'use_best_params': True, 'gpu': 0, 'epoch': 200, 'patience': None, 'opt
 2024-08-12 02:41:54,992 INFO    MainThread:56923 [wandb_run.py:_redirect():2161] Wrapping output streams.
 2024-08-12 02:41:54,992 INFO    MainThread:56923 [wandb_run.py:_redirect():2186] Redirects installed.
 2024-08-12 02:41:54,993 INFO    MainThread:56923 [wandb_init.py:init():847] run started, returning control to user process
+2024-08-12 02:45:53,251 INFO    MainThread:56923 [wandb_run.py:_finish():1970] finishing run wxy-ucas/src-sweep/yyfgvh9l
+2024-08-12 02:45:53,251 INFO    MainThread:56923 [wandb_run.py:_atexit_cleanup():2210] got exitcode: 0
+2024-08-12 02:45:53,252 INFO    MainThread:56923 [wandb_run.py:_restore():2193] restore
+2024-08-12 02:45:53,252 INFO    MainThread:56923 [wandb_run.py:_restore():2199] restore done
+2024-08-12 02:46:02,602 INFO    MainThread:56923 [wandb_run.py:_footer_history_summary_info():3866] rendering history
+2024-08-12 02:46:02,603 INFO    MainThread:56923 [wandb_run.py:_footer_history_summary_info():3898] rendering summary
+2024-08-12 02:46:02,608 INFO    MainThread:56923 [wandb_run.py:_footer_sync_info():3825] logging synced files

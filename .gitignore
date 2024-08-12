@@ -7,3 +7,14 @@ __pycache__
 # dataset
 data/*
 src/splits/*
+
+# wandb
+src/wandb/*
+src/sweep/wandb/*
+
+# 
+grade/*
+
+# test
+src/test.ipynb
+

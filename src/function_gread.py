@@ -43,7 +43,7 @@ class ODEFuncGread(ODEFunc):
   def sparse_multiply(self, x):
     """
     - `attention` is equivalent to "Soft Adjacency Matrix (SA)".
-    - If `block` is `constant`, we use "Original Adjacency Matrix (OA)"
+    - If `block` is `constant`, we use "Original Adjacency Matrix   (OA)"
     """
     if self.opt['block'] in ['attention']:  # adj is a multihead attention
       mean_attention = self.attention_weights.mean(dim=1)
@@ -62,6 +62,7 @@ class ODEFuncGread(ODEFunc):
   def calculate_gat_kernel(self, x):
     GAT_Kernel = SpGraphAttentionLayer(self.in_features, self.out_features, self.opt, self.device).to(self.device)
     k = GAT_Kernel(x, self.edge_index)  # torch.Size([10138, 1])
+    self.kernel =  torch.sparse_coo_tensor(self.edge_index, k.squeeze(-1), (x.shape[0], x.shape[0]), requires_grad=False).to('cpu')
     # 使用更高效的计算方式代替 torch.stack 和 torch_sparse.spmm
     kx = torch.zeros_like(x)
     for idx in range(k.shape[1]):
@@ -158,19 +159,18 @@ class ODEFuncGread(ODEFunc):
     # aggeragation diffusion term
     elif self.opt['reaction_term'] =='aggdiff-log':
       kx = self.calculate_log_kernel(x)  # torch.Size([2485, 2485])
-      reaction = 1e-4*(ax-x)*kx  # 1e-4 is a hyperparameter to avoid gradient explosion
+      reaction = (ax-x)*kx  # 1e-4 is a hyperparameter to avoid gradient explosion
       
     elif self.opt['reaction_term'] =='aggdiff-gat':
       kx = self.calculate_gat_kernel(x)  # torch.Size([2485, 64])
       # print(f'After calculate_gat_kernel: {torch.cuda.memory_allocated() / 1024 ** 2} MB')  # monitor GPU memory usage
-      reaction =  1e-4*(ax-x)*kx
+      reaction =  (ax-x)*kx
+      
       
     elif self.opt['reaction_term'] =='aggdiff-gauss':
       kx = self.calculate_gauss_kernel(x)  # torch.Size([2485, 2485])
-      reaction = 1e-4*(ax-x)*kx  # 1e-4 is a hyperparameter to avoid gradient explosion
+      reaction = (ax-x)*kx  # 1e-4 is a hyperparameter to avoid gradient explosion
       
-    
-       
     elif self.opt['reaction_term'].split('_')[0] == 'exp':
       orders = int(self.opt['reaction_term'].split('_')[1])
       reaction = x
@@ -225,9 +225,11 @@ class ODEFuncGread(ODEFunc):
             high_order = self.sparse_multiply(high_orders[-1])
             high_orders.append(high_order)
           reaction = reaction + (-1)**order/np.prod(order*2) * high_order
-    
+      
     else:
       raise Exception('Unknown reaction term.')
+    
+    self.reaction= reaction
 
     # define the gread diffusion-reation form using reaction_term and diffusion
     """
@@ -238,17 +240,14 @@ class ODEFuncGread(ODEFunc):
     """
     if self.opt['beta_diag'] == False:
       if self.opt['reaction_term'] =='fb':
-        f = alpha*diffusion + beta*reaction
+        f = alpha*diffusion + beta*self.reaction
       elif self.opt['reaction_term'] =='fb3':
-        f = alpha*diffusion + beta*(reaction + x)
+        f = alpha*diffusion + beta*(self.reaction + x)
       else:
-        f = alpha*diffusion + beta*reaction
+        f = alpha*diffusion + beta*self.reaction
         # print(f'End of forward: {torch.cuda.memory_allocated() / 1024 ** 2} MB')
     elif self.opt['beta_diag'] == True:
-      f = alpha*diffusion + reaction@self.Beta  # torch.Size([2485, 64])
-      
-    else:
-      raise Exception('Unknown reaction term.')
+      f = alpha*diffusion + self.reaction@self.Beta  # torch.Size([2485, 64])
     
     """
     - We do not use the `add_source` on GREAD

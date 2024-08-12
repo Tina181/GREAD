@@ -11,7 +11,7 @@ class GNN(BaseGNN):
     self.f = set_function(opt)  # 设置gread还是laplacian gread里再设置reaction_term
     block = set_block(opt)  # 设置attention还是constant
     time_tensor = torch.tensor([0, self.T]).to(device)
-    self.odeblock = block(self.f, self.regularization_fns, opt, dataset.data, device, t=time_tensor).to(device)
+    self.odeblock = block(self.f, self.regularization_fns, opt, dataset.data, device, t=time_tensor).to(device) # ConstantODEblock
     self.odeblock.odefunc.GNN_postXN = self.GNN_postXN
     self.odeblock.odefunc.GNN_m2 = self.m2
 

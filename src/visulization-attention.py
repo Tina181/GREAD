@@ -12,7 +12,25 @@ from graph_rewiring import apply_beltrami
 from gread_params import best_params_dict, hetero_params, shared_gread_params, shared_grand_params
 from utils import dirichlet_energy
 import wandb
+import matplotlib.pyplot as plt
+import matplotlib
 # conda activate grade
+
+# visulize reaction_kernel
+matplotlib.use('Agg')
+def plot_grid(grid, time_step, ax):
+    """
+    使用 Matplotlib 绘制 2D 网格。
+
+    参数:
+        grid (numpy.ndarray): 需要绘制的 2D 网格。
+        time_step (int): 当前的时间步。
+        ax (matplotlib.axes.Axes): 用于绘制网格的 Axes 对象。
+    """
+    ax.imshow(grid, cmap='magma', interpolation='nearest')   # nearest: no smoothing
+    ax.set_title(f"t = {time_step}")
+    ax.axis('off')
+    plt.show()
 
 def get_optimizer(name, parameters, lr, weight_decay=0):
     if name == 'sgd':
@@ -245,6 +263,9 @@ def main(cmd_opt):
 
     this_test = test
     results = []
+    
+    
+    
     for rep in range(opt['num_splits']):
         print(f"rep {rep}")
         if not opt['planetoid_split'] and opt['dataset'] in ['Cora', 'Citeseer', 'Pubmed']:
@@ -283,9 +304,18 @@ def main(cmd_opt):
         best_time = best_epoch = train_acc = val_acc = test_acc = 0
         if opt['patience'] is not None:
             patience_count = 0
+            
+        # create subgraphs for kernel visualization
+        step_num = 20
+        fig, axs = plt.subplots(1, opt['epoch']//step_num, figsize=(15, 3))
+        
         for epoch in range(1, opt['epoch']):
             start_time = time.time()
             loss = train(model, optimizer, data, pos_encoding)
+            
+            # get kernel in aggeragation diffusion models
+            if opt['reaction_term'] in ['aggdiff-log', 'aggdiff-gat', 'aggdiff-gauss']:
+                kernel = model.odeblock.odefunc.kernel.detach().to_dense().numpy()
 
             tmp_train_acc, tmp_val_acc, tmp_test_acc = this_test(model, data, pos_encoding, opt)
 
@@ -305,12 +335,13 @@ def main(cmd_opt):
                 test_acc = model.odeblock.test_integrator.solver.best_test
                 train_acc = model.odeblock.test_integrator.solver.best_train
                 best_time = model.odeblock.test_integrator.solver.best_time
-
-            print(f"Epoch: {epoch}, Runtime: {time.time() - start_time:.4f}, Loss: {loss:.3f}, "
-                f"forward nfe {model.fm.sum}, backward nfe {model.bm.sum}, "
-                f"tmp_train: {tmp_train_acc:.4f}, tmp_val: {tmp_val_acc:.4f}, tmp_test: {tmp_test_acc:.4f}, "
-                f"Train: {train_acc:.4f}, Val: {val_acc:.4f}, Test: {test_acc:.4f}, Best time: {best_time:.4f}")
-            torch.cuda.empty_cache()    # clear memory
+            if epoch % step_num == 0:
+                print(f"Epoch: {epoch}, Runtime: {time.time() - start_time:.4f}, Loss: {loss:.3f}, "
+                    f"forward nfe {model.fm.sum}, backward nfe {model.bm.sum}, "
+                    f"tmp_train: {tmp_train_acc:.4f}, tmp_val: {tmp_val_acc:.4f}, tmp_test: {tmp_test_acc:.4f}, "
+                    f"Train: {train_acc:.4f}, Val: {val_acc:.4f}, Test: {test_acc:.4f}, Best time: {best_time:.4f}")
+                if opt['reaction_term'] in ['aggdiff-log', 'aggdiff-gat', 'aggdiff-gauss']:
+                    plot_grid(kernel, epoch, axs[epoch//step_num]) 
             
             if np.isnan(loss):
                 wandb_run.finish()
@@ -320,7 +351,7 @@ def main(cmd_opt):
                     break
         print(
             f"best val accuracy {val_acc:.3f} with test accuracy {test_acc:.3f} at epoch {best_epoch} and best time {best_time:2f}")
-
+        
         if opt['num_splits'] > 1:
             results.append([test_acc, val_acc, train_acc])
 
@@ -332,6 +363,14 @@ def main(cmd_opt):
     else:
         results = {'test_mean': test_acc, 'val_mean': val_acc, 'train_mean': train_acc}
     print(results)
+    
+    # save img
+    plt.savefig('img/kernel.png', dpi=300)  # 保存为 PNG 格式
+    
+    # show the image of kernel
+    plt.tight_layout()
+    plt.show()
+        
     if opt['wandb']:
         wandb.log(results)
         wandb_run.finish()

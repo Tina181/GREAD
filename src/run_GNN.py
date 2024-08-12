@@ -14,8 +14,6 @@ from graph_rewiring import apply_beltrami
 from gread_params import best_params_dict, hetero_params, shared_gread_params, shared_grand_params
 from utils import dirichlet_energy
 import wandb
-# 改变默认root path
-os.chdir('/root/autodl-tmp/GREAD/src')
 
 # conda activate grade
 

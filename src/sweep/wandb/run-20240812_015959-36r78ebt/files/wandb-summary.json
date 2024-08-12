@@ -1,1 +1,0 @@
-{"loss": 1.427456021308899, "forward_nfe": 7940, "backward_nfe": 0, "train_acc": 0.36, "val_acc": 0.7, "test_acc": 0.5903614457831325, "epoch_step": 0, "_timestamp": 1723399429.1762712, "_runtime": 229.19268822669983, "_step": 1990, "test_mean": 58.91566265060241, "val_mean": 78.8, "train_mean": 41.8, "test_acc_std": 3.2080787845046617, "_wandb": {"runtime": 224}}

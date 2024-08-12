@@ -4,17 +4,14 @@ import argparse
 import numpy as np
 import torch
 from torch_geometric.utils import add_remaining_self_loops, to_undirected
-
 from GNN import GNN
 from GNN_early import GNNEarly
 from data import get_dataset, set_train_val_test_split
 from heterophilic import get_fixed_splits
 from graph_rewiring import apply_beltrami
-
 from gread_params import best_params_dict, hetero_params, shared_gread_params, shared_grand_params
 from utils import dirichlet_energy
 import wandb
-
 # conda activate grade
 
 def get_optimizer(name, parameters, lr, weight_decay=0):

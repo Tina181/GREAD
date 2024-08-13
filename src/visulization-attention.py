@@ -27,7 +27,7 @@ def plot_grid(grid, time_step, ax):
         time_step (int): 当前的时间步。
         ax (matplotlib.axes.Axes): 用于绘制网格的 Axes 对象。
     """
-    ax.imshow(grid, cmap='magma', interpolation='nearest')   # nearest: no smoothing
+    ax.imshow(grid, cmap='hot', interpolation='bilinear')   # nearest: no smoothing
     ax.set_title(f"t = {time_step}")
     ax.axis('off')
     plt.show()
@@ -315,7 +315,7 @@ def main(cmd_opt):
             
             # get kernel in aggeragation diffusion models
             if opt['reaction_term'] in ['aggdiff-log', 'aggdiff-gat', 'aggdiff-gauss']:
-                kernel = model.odeblock.odefunc.kernel.detach().to_dense().numpy()
+                kernel = model.odeblock.odefunc.k_dense.detach().to_dense().numpy()
 
             tmp_train_acc, tmp_val_acc, tmp_test_acc = this_test(model, data, pos_encoding, opt)
 

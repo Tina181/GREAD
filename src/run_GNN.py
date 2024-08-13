@@ -310,7 +310,6 @@ def main(cmd_opt):
                 f"forward nfe {model.fm.sum}, backward nfe {model.bm.sum}, "
                 f"tmp_train: {tmp_train_acc:.4f}, tmp_val: {tmp_val_acc:.4f}, tmp_test: {tmp_test_acc:.4f}, "
                 f"Train: {train_acc:.4f}, Val: {val_acc:.4f}, Test: {test_acc:.4f}, Best time: {best_time:.4f}")
-            torch.cuda.empty_cache()    # clear memory
             
             if np.isnan(loss):
                 wandb_run.finish()

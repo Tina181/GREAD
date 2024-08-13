@@ -52,6 +52,20 @@ class ODEFuncGread(ODEFunc):
       ax = torch_sparse.spmm(self.edge_index, self.edge_weight, x.shape[0], x.shape[0], x)
     return ax
   
+  def calculate_gauss_kernel_dense(self, x):
+    n = x.size(0)  # 节点数量
+    d = x.size(1)  # 特征维度
+    # 扩展并计算所有节点对之间的差值
+    x_expanded = x.unsqueeze(0).repeat(n, 1, 1)  # 形状 (n, n, d)
+    diff = x_expanded - x.unsqueeze(1)  # 形状 (n, n, d)
+    # 计算平方距离矩阵
+    sq_dist = torch.sum(diff ** 2, dim=-1)  # 形状 (n, n)
+    # 使用向量化计算高斯核矩阵
+    factor = 1 / ((4 * math.pi * self.epsilon ** 2) ** (d / 2))
+    exponent = torch.exp(-sq_dist / (4 * self.epsilon ** 2))
+    kernel = factor * exponent
+    return kernel
+  
   def calculate_log_kernel(self, x):  # x: [2485, 64]
     Log_Kernel = SpGraphlogKernelLayer(self.in_features, self.out_features, self.opt, self.device).to(self.device)
     n = x.shape[0]  # number of nodes
@@ -62,8 +76,6 @@ class ODEFuncGread(ODEFunc):
   def calculate_gat_kernel(self, x):
     GAT_Kernel = SpGraphAttentionLayer(self.in_features, self.out_features, self.opt, self.device).to(self.device)
     k = GAT_Kernel(x, self.edge_index)  # torch.Size([10138, 1])
-    self.kernel =  torch.sparse_coo_tensor(self.edge_index, k.squeeze(-1), (x.shape[0], x.shape[0]), requires_grad=False).to('cpu')
-    # 使用更高效的计算方式代替 torch.stack 和 torch_sparse.spmm
     kx = torch.zeros_like(x)
     for idx in range(k.shape[1]):
         kx += torch_sparse.spmm(self.edge_index, k[:, idx], x.shape[0], x.shape[0], x)
@@ -163,12 +175,14 @@ class ODEFuncGread(ODEFunc):
       
     elif self.opt['reaction_term'] =='aggdiff-gat':
       kx = self.calculate_gat_kernel(x)  # torch.Size([2485, 64])
+      # self.kernel =  torch.sparse_coo_tensor(self.edge_index, k.squeeze(-1), (x.shape[0], x.shape[0]), requires_grad=False).to('cpu')
       # print(f'After calculate_gat_kernel: {torch.cuda.memory_allocated() / 1024 ** 2} MB')  # monitor GPU memory usage
       reaction =  (ax-x)*kx
       
       
     elif self.opt['reaction_term'] =='aggdiff-gauss':
       kx = self.calculate_gauss_kernel(x)  # torch.Size([2485, 2485])
+      # self.k_dense = self.calculate_gauss_kernel_dense(x).to('cpu')  # torch.Size([2485, 2485])
       reaction = (ax-x)*kx  # 1e-4 is a hyperparameter to avoid gradient explosion
       
     elif self.opt['reaction_term'].split('_')[0] == 'exp':

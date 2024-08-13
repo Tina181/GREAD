@@ -483,7 +483,7 @@ if __name__ == '__main__':
                         help="attention,pos_distance, z_distance, pos_distance_QK, z_distance_QK")
     
     # gread args
-    parser.add_argument('--reaction_term', type=str, default='aggdiff-gat', help='bspm, fisher, allen-cahn')
+    parser.add_argument('--reaction_term', type=str, default='bspm', help='bspm, fisher, allen-cahn')
     parser.add_argument('--beta_diag', type=eval, default=False)
     
     # with source term args

@@ -1,9 +1,12 @@
 program: run_GNN_sweep.py
-method: bayes  # You can choose the method to be grid, random or bayes
+# num_samples: 100
 metric:
   name: test_mean
   goal: maximize
-wandb_project: grade_cora_aggdiff-log
+# method: random  # # You can choose the method to be grid, random or bayes
+method: bayes
+# random_state_seed: 42  # 设置随机种子以获得可复现的结果
+
 parameters:
   dataset:
     values: ['Cora']
@@ -16,7 +19,7 @@ parameters:
   hidden_dim:
     values: [32, 64, 128, 256]
   reaction_term:
-    values: ['aggdiff-log']
+    values: ['aggdiff-gauss']
   #   values: ['cos_1', 'cos_2', 'cos_3', ]
   data_norm:
     values: ['rw', 'gcn']
@@ -29,6 +32,16 @@ parameters:
   XN_activation:
     values: [true, false]
 
+  diffusion_rate1:
+    distribution: q_uniform
+    min: 1e-5
+    max: 1
+    q: 1e-3
+  diffusion_rate2:
+    distribution: q_uniform
+    min: 1e-5
+    max: 1
+    q: 1e-3
   method:
     values: ['rk4', 'euler']
   step_size:
@@ -41,13 +54,13 @@ parameters:
     min: 2
     max: 2.5
     q: 0.01
-  
 command:
   - ${env}
   - python
   - run_GNN_sweep.py
   - --num_splits=10
   - --wandb
+  - --wandb_project=grade-sweep
   - --beta_diag=True
   - --block=constant
   - --use_best_params

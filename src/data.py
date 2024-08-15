@@ -1,7 +1,5 @@
 import os
-
 import numpy as np
-
 import torch
 from torch_geometric.data import Data, InMemoryDataset
 from torch_geometric.datasets import Planetoid, Amazon, Coauthor

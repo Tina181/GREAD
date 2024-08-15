@@ -1,8 +1,9 @@
 program: run_GNN_sweep.py
-method: bayes  # You can choose the method to be grid, random or bayes
 metric:
   name: test_mean
   goal: maximize
+method: bayes  # # You can choose the method to be grid, random or bayes
+
 parameters:
   dataset:
     values: ['Cora']
@@ -28,6 +29,16 @@ parameters:
   XN_activation:
     values: [true, false]
 
+  diffusion_rate1:
+    distribution: q_uniform
+    min: 1e-5
+    max: 1
+    q: 1e-3
+  diffusion_rate2:
+    distribution: q_uniform
+    min: 1e-5
+    max: 1
+    q: 1e-3
   method:
     values: ['rk4', 'euler']
   step_size:
@@ -46,7 +57,7 @@ command:
   - run_GNN_sweep.py
   - --num_splits=10
   - --wandb
-  - --wandb_project=grade-sweep-cora-gauss
+  - --wandb_project=grade-sweep
   - --beta_diag=True
   - --block=constant
   - --use_best_params

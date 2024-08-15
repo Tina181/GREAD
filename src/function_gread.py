@@ -24,6 +24,8 @@ class ODEFuncGread(ODEFunc):
 
     self.in_features = in_features
     self.out_features = out_features
+    self.diffusion_rate1 = opt['diffusion_rate1']
+    self.diffusion_rate2 = opt['diffusion_rate2']
 
     self.reaction_tanh = False
     self.epsilon = 1.0  # gaussian kernel variance (取为0.1时会梯度爆炸 loss=nan)
@@ -178,6 +180,7 @@ class ODEFuncGread(ODEFunc):
       # self.kernel =  torch.sparse_coo_tensor(self.edge_index, k.squeeze(-1), (x.shape[0], x.shape[0]), requires_grad=False).to('cpu')
       # print(f'After calculate_gat_kernel: {torch.cuda.memory_allocated() / 1024 ** 2} MB')  # monitor GPU memory usage
       reaction =  (ax-x)*kx
+      # print(reaction.max(), reaction.min())
       
       
     elif self.opt['reaction_term'] =='aggdiff-gauss':
@@ -258,10 +261,10 @@ class ODEFuncGread(ODEFunc):
       elif self.opt['reaction_term'] =='fb3':
         f = alpha*diffusion + beta*(self.reaction + x)
       else:
-        f = alpha*diffusion + beta*self.reaction
+        f = self.diffusion_rate1*alpha*diffusion + self.diffusion_rate2*beta*self.reaction  # tuning two diffusion rates
         # print(f'End of forward: {torch.cuda.memory_allocated() / 1024 ** 2} MB')
     elif self.opt['beta_diag'] == True:
-      f = alpha*diffusion + self.reaction@self.Beta  # torch.Size([2485, 64])
+      f = self.diffusion_rate1*alpha*diffusion + self.diffusion_rate2*self.reaction@self.Beta  # torch.Size([2485, 64])
     
     """
     - We do not use the `add_source` on GREAD

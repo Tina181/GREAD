@@ -1,8 +1,12 @@
 program: run_GNN_sweep.py
-method: bayes  # You can choose the method to be grid, random or bayes
+# num_samples: 100
 metric:
   name: test_mean
   goal: maximize
+# method: random  # # You can choose the method to be grid, random or bayes
+method: bayes
+# random_state_seed: 42  # 设置随机种子以获得可复现的结果
+
 parameters:
   dataset:
     values: ['Cora']
@@ -28,6 +32,16 @@ parameters:
   XN_activation:
     values: [true, false]
 
+  diffusion_rate1:
+    distribution: q_uniform
+    min: 1e-5
+    max: 1
+    q: 1e-3
+  diffusion_rate2:
+    distribution: q_uniform
+    min: 1e-5
+    max: 1
+    q: 1e-3
   method:
     values: ['rk4', 'euler']
   step_size:

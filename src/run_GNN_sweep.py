@@ -12,6 +12,18 @@ from graph_rewiring import apply_beltrami
 from gread_params import best_params_dict, hetero_params, shared_gread_params, shared_grand_params
 from utils import dirichlet_energy
 import wandb
+# get the current path "GREAD/notebook" and the abs path of "GREAD/src" directory
+import os
+current_path = os.getcwd()   # get the current path
+# print(current_path)  
+module_path = os.path.abspath(os.path.join('../src'))   # relative path: ../src, turn it to absollute path
+# print(module_path)  
+
+# add the module_path to sys.path
+import sys
+if module_path not in sys.path:
+    sys.path.append(module_path)
+print(sys.path)
 
 def get_optimizer(name, parameters, lr, weight_decay=0):
     if name == 'sgd':
@@ -485,6 +497,8 @@ if __name__ == '__main__':
     # gread args
     parser.add_argument('--reaction_term', type=str, default='bspm', help='bspm, fisher, allen-cahn')
     parser.add_argument('--beta_diag', type=eval, default=False)
+    parser.add_argument('--diffusion_rate1', type=float, default=0.1, help='diffusion rate for diffusion term')
+    parser.add_argument('--diffusion_rate2', type=float, default=0.1, help='diffusion rate for reaction term')
     
     # with source term args
     parser.add_argument('--trusted_mask', type=eval, default=False, help='mask')

@@ -9,55 +9,45 @@ method: bayes
 
 parameters:
   dataset:
-    values: ['cornell']
+    values: ['Cora']
   epoch:
     values: [200]
   alpha_dim:
-    values: ['vc', 'sc']
+    values: ['vc']
   beta_dim:
-    values: ['vc', 'sc']
+    values: ['vc']
   hidden_dim:
-    values: [32, 64, 128, 256]
-  reaction_term:
-    values: ['aggdiff-gauss']
+    values: [64]
+  function:
+    values: ['laplacian']
   #   values: ['cos_1', 'cos_2', 'cos_3', ]
   data_norm:
     values: ['rw', 'gcn']
   self_loop_weight:
-    values: [0, 1.]
+    values: [1.]
   use_mlp:
-    values: [false, true]
+    values: [false]
   m2_mlp:
-    values: [false, true]
+    values: [true]
   XN_activation:
-    values: [false, true]
+    values: [true]
 
-  diffusion_rate1:
-    distribution: q_uniform
-    min: 0
-    max: 1
-    q: 0.05
-  diffusion_rate2:
-    distribution: q_uniform
-    min: 0
-    max: 1
-    q: 0.05
   method:
-    values: ['rk4']
+    values: ['rk4', 'euler']
   step_size:
     distribution: q_uniform
     min: 0
-    max: 0.5
+    max: 1
     q: 0.05
   time:  
     distribution: uniform
-    min: 0.5
-    max: 2
+    min: 1
+    max: 5
 command:
   - ${env}
   - python
   - run_GNN_sweep.py
-  - --geom_gcn_splits
+  - --num_splits=10
   - --wandb
   - --wandb_project=grade-sweep
   - --beta_diag=True

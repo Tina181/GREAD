@@ -44,7 +44,7 @@ best_params_dict = {
           'input_dropout': 0.6759632513264229, 'dropout': 0.09328362336851624,
           'use_mlp': False, 'm2_mlp': True, 'XN_activation': True
            },
-# 将method由rk4暂时改成euler
+
 'Cora': {'reaction_term':'bspm', 'alpha_dim':'vc', 'beta_dim':'vc', 'beta_diag':True, 
           'method':'rk4', 'time': 3.790184078169178,'step_size':0.5,
           'epoch':200, 'lr': 0.011402915506754104 ,'decay': 0.008014968630105014,

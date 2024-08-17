@@ -214,6 +214,8 @@ def merge_cmd_args(cmd_opt, opt):
         opt['beltrami'] = True
 
 def main(cmd_opt):
+    print('reaction_term------------------', cmd_opt['reaction_term'])
+    print('num_splits--------------', cmd_opt['num_splits'])
     if cmd_opt['use_best_params']:  # use best params for dataset
         best_opt = best_params_dict[cmd_opt['dataset']]
         opt = {**cmd_opt, **best_opt}

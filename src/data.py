@@ -8,6 +8,7 @@ from torch_geometric.datasets import Planetoid, Amazon, Coauthor
 import torch_geometric.transforms as T
 from torch_geometric.utils import to_undirected
 from heterophilic import WebKB, WikipediaNetwork, Actor
+from voc_superpixels import VOCSuperpixels
 from utils import ROOT_DIR
 from graph_rewiring import get_two_hop, apply_gdc, make_symmetric, apply_pos_dist_rewire
 
@@ -42,14 +43,17 @@ def get_dataset(opt: dict, data_dir, use_lcc: bool = False) -> InMemoryDataset:
     dataset = PygNodePropPredDataset(name=ds, root=path,
                                      transform=T.ToSparseTensor())
     use_lcc = False  #  never need to calculate the lcc with ogb datasets
+  # elif ds == 'voc_superpixels':
+  #dataset = VOCSuperpixels(root=path, name=ds, transform=T.NormalizeFeatures())
   else:
     raise Exception('Unknown dataset.')
 
+  # calculate the largest connected component
   if use_lcc:
-    lcc = get_largest_connected_component(dataset)
+    lcc = get_largest_connected_component(dataset)  # (2120,)
 
-    x_new = dataset.data.x[lcc]
-    y_new = dataset.data.y[lcc]
+    x_new = dataset.data.x[lcc] # torch.Size([2120, 3703])
+    y_new = dataset.data.y[lcc] # torch.Size([2120])
 
     row, col = dataset.data.edge_index.numpy()
     edges = [[i, j] for i, j in zip(row, col) if i in lcc and j in lcc]

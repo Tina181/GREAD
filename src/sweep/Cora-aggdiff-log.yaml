@@ -1,0 +1,73 @@
+program: run_GNN.py
+# num_samples: 100
+metric:
+  name: test_mean
+  goal: maximize
+# method: random  # # You can choose the method to be grid, random or bayes
+method: bayes
+# random_state_seed: 42  # 设置随机种子以获得可复现的结果
+
+parameters:
+  dataset:
+    values: ['Cora']
+  time_encoding:
+    values: ['None', 'mlp']
+  epoch:
+    values: [200]
+  log_eps:
+    distribution: uniform
+    min: 0.2
+    max: 1.0
+  alpha_dim:
+    values: ['vc', 'sc']
+  beta_dim:
+    values: ['vc', 'sc']
+  hidden_dim:
+    values: [32, 64, 128, 256]
+  reaction_term:
+    values: ['aggdiff-log']
+  #   values: ['cos_1', 'cos_2', 'cos_3', ]
+  data_norm:
+    values: ['rw', 'gcn']
+  self_loop_weight:
+    values: [0, 1.]
+  use_mlp: 
+    values: [false]
+  m2_mlp:
+    values: [true]
+  XN_activation:
+    values: [true]
+
+  diffusion_rate1:
+    distribution: q_uniform
+    min: 0
+    max: 1
+    q: 0.05
+  diffusion_rate2:
+    distribution: q_uniform
+    min: 0
+    max: 0.5
+    q: 0.05
+  method:
+    values: ['euler']
+  step_size:
+    distribution: q_uniform
+    min: 0
+    max: 1
+    q: 0.05
+  time:  
+    distribution: uniform
+    min: 1
+    max: 5
+command:
+  - ${env}
+  - python
+  - run_GNN.py
+  - --gpu=4
+  - --geom_gcn_splits
+  - --wandb
+  - --wandb_project=grade-sweep
+  - --beta_diag=True
+  - --block=constant
+  - --use_best_params
+  - ${args}

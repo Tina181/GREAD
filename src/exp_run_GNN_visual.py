@@ -16,7 +16,42 @@ from gread_params import best_params_dict, hetero_params, shared_gread_params, s
 from aggdiff_params import best_params_dict_aggdiff, hetero_params, shared_gread_params, shared_grand_params
 from utils import dirichlet_energy
 import wandb
+import networkx as nx
+import matplotlib.pyplot as plt
+import os
 
+
+# Visualization function for NX graph or PyTorch tensor
+def visualize(h, color, epoch=None, loss=None, accuracy=None, filename='./visualization.png'):
+    plt.figure(figsize=(7, 7))
+    plt.xticks([])
+    plt.yticks([])
+
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    
+    if torch.is_tensor(h):
+        print(h.shape)
+        h = h.detach().cpu().numpy()
+        print(color)
+        print(color.shape)
+        plt.scatter(h[:, 0], h[:, 1], s=140, c=color.detach().cpu().numpy(), cmap="Set2")
+        if epoch is not None and loss is not None and accuracy['train'] is not None and accuracy['val'] is not None:
+            plt.xlabel((f'Epoch: {epoch}, Loss: {loss.item():.4f} \n'
+                         f'Training Accuracy: {accuracy["train"]*100:.2f}% \n'
+                         f' Validation Accuracy: {accuracy["val"]*100:.2f}%'),
+                         fontsize=16)
+    else:
+        import networkx as nx  # 确保导入 networkx
+        nx.draw_networkx(h, pos=nx.spring_layout(h, seed=42), with_labels=False,
+                         node_color=color, cmap="Set2")
+
+    plt.savefig(filename, format='png', bbox_inches='tight')  # 保存为 PNG 文件
+    plt.close()  # 关闭图形以释放内存
+
+# from torch_geometric.utils import to_networkx
+
+# G = to_networkx(data, to_undirected=True)
+# visualize(G, color=data.y, filename='visualization.png')  # 指定文件名
 
 def get_optimizer(name, parameters, lr, weight_decay=0):
     if name == 'sgd':
@@ -320,6 +355,11 @@ def main(cmd_opt):
                 f"forward nfe {model.fm.sum}, backward nfe {model.bm.sum}, "
                 f"tmp_train: {tmp_train_acc:.4f}, tmp_val: {tmp_val_acc:.4f}, tmp_test: {tmp_test_acc:.4f}, "
                 f"Train: {train_acc:.4f}, Val: {val_acc:.4f}, Test: {test_acc:.4f}, Best time: {best_time:.4f}")
+            
+            if epoch % 20 == 0:
+                print(model.embedding.shape)
+                filename = f'img/visualization_epoch_{epoch}.png'  # 动态生成文件名
+                visualize(model.embedding, color=data.y, epoch=epoch, filename=filename)
 
             if np.isnan(loss):
                 wandb_run.finish()
@@ -330,6 +370,21 @@ def main(cmd_opt):
         print(
             f"best val accuracy {val_acc:.3f} with test accuracy {test_acc:.3f} at epoch {best_epoch} and best time {best_time:2f}")
 
+
+        from PIL import Image
+
+        all_img_list = sorted(os.listdir(os.path.dirname(filename)))
+
+        all_np_list = []
+        for img_path in all_img_list:
+            img_np = np.array(Image.open(os.path.join('./img',img_path)))
+            all_np_list.append(img_np)
+
+        final_filename = filename.replace('epoch', "all_from_20")
+        final_img_np = np.concatenate(all_np_list, axis=1)
+        final_img = Image.fromarray(final_img_np)
+        final_img.save(final_filename)
+        
         if opt['num_splits'] > 1:
             results.append([test_acc, val_acc, train_acc])
 

@@ -74,9 +74,30 @@ class ODEblock(nn.Module):
     return self.__class__.__name__ + '( Time Interval ' + str(self.t[0].item()) + ' -> ' + str(self.t[1].item()) \
            + ")"
 
+class TimeDepedentParams(nn.Module):
+  def __init__(self, opt):
+      super(TimeDepedentParams, self).__init__()
+      if opt['alpha_dim'] == 'sc':
+        output_dim = 1
+      elif opt['alpha_dim'] == 'vc':
+        output_dim = opt['hidden_dim']
+      if opt['time_encoding'] == "None":
+        self.param = nn.Parameter(0.0*torch.ones(1,output_dim))
+        self.param_encoder = lambda t: self.param
+      elif opt['time_encoding'] == 'mlp':
+        self.param_encoder = nn.Sequential(
+            nn.Linear(1, 64),
+            nn.ReLU(),
+            nn.Linear(64, output_dim)
+        )
+      else:
+        raise Exception('Unknown time encoding.')
+  def forward(self, t):
+      t = t.unsqueeze(-1)  # Ensure t is a column vector
+      params = self.param_encoder(t)
+      return params
 
 class ODEFunc(MessagePassing):
-
   # currently requires in_features = out_features
   def __init__(self, opt, data, device):
     super(ODEFunc, self).__init__()
@@ -85,23 +106,24 @@ class ODEFunc(MessagePassing):
     self.edge_index = None
     self.edge_weight = None
     self.attention_weights = None
+    '''time dependent params'''
+    # time-depedent alpha, source, beta
     if opt['alpha_dim'] == 'sc':
-      self.alpha_train = nn.Parameter(torch.tensor(0.0))
+      self.alpha_train = TimeDepedentParams(opt)
     elif opt['alpha_dim'] == 'vc':
-      self.alpha_train = nn.Parameter(0.0*torch.ones(1,opt['hidden_dim']))
+      self.alpha_train = TimeDepedentParams(opt)
     if opt['source_dim'] == 'sc':
-      self.source_train = nn.Parameter(torch.tensor(0.0))
+      self.source_train = TimeDepedentParams(opt)
     elif opt['source_dim'] == 'vc':
-      self.source_train = nn.Parameter(0.0*torch.ones(1,opt['hidden_dim']))
+      self.source_train = TimeDepedentParams(opt)
     if opt['beta_dim'] == 'sc':
-      self.beta_train = nn.Parameter(torch.tensor(0.0))
+      self.beta_train = TimeDepedentParams(opt)
     elif opt['beta_dim'] == 'vc':
-      self.beta_train = nn.Parameter(0.0*torch.ones(1,opt['hidden_dim']))
+      self.beta_train = TimeDepedentParams(opt)
     self.x0 = None
     self.nfe = 0
     self.alpha_sc = nn.Parameter(torch.ones(1))
     self.source_sc = nn.Parameter(torch.ones(1))
-
   def __repr__(self):
     return self.__class__.__name__
 

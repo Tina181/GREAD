@@ -1,0 +1,68 @@
+program: run_GNN.py
+metric:
+  name: test_mean
+  goal: maximize
+method: bayes  # # You can choose the method to be grid, random or bayes
+
+parameters:
+  dataset:
+    values: ['film']
+  time_encoding:
+    values: ['None', 'mlp']
+  epoch:
+    values: [200]
+  alpha_dim:
+    values: ['sc', 'vc']
+  beta_dim:
+    values: ['sc', 'vc']
+  hidden_dim:
+    values: [32, 64, 128, 256]
+  reaction_term:
+    values: ['aggdiff-sin']
+  #   values: ['cos_1', 'cos_2', 'cos_3', ]
+  heads:
+    values: [1, 4, 8]
+  data_norm:
+    values: ['rw', 'gcn']
+  self_loop_weight:
+    values: [0., 1.]
+  use_mlp:
+    values: [true, false]
+  m2_mlp:
+    values: [true, false]
+  XN_activation:
+    values: [true, false]
+
+  diffusion_rate1:
+    distribution: q_uniform
+    min: 0
+    max: 1
+    q: 0.01
+  diffusion_rate2:
+    distribution: q_uniform
+    min: 0
+    max: 1
+    q: 0.01
+  method:
+    values: ['rk4', 'euler']
+  step_size:
+    distribution: q_uniform
+    min: 0
+    max: 0.2
+    q: 0.05
+  time:  
+    distribution: uniform
+    min: 0.1
+    max: 2.5
+command:
+  - ${env}
+  - python
+  - run_GNN.py
+  - --geom_gcn_splits
+  - --gpu=4
+  - --wandb
+  - --wandb_project=grade-sweep
+  - --beta_diag=True
+  - --block=constant
+  - --use_best_params
+  - ${args}

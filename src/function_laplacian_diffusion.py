@@ -40,11 +40,11 @@ class LaplacianODEFunc(ODEFunc):
     self.nfe += 1
     ax = self.sparse_multiply(x)
     if not self.opt['no_alpha_sigmoid']:
-      alpha = torch.sigmoid(self.alpha_train)
+      alpha = torch.sigmoid(self.alpha_train(t))
     else:
-      alpha = self.alpha_train
+      alpha = self.alpha_train(t)
 
     f = alpha * (ax - x)
     if self.opt['add_source']:
-      f = f + self.source_train * self.x0
+      f = f + self.source_train(t) * self.x0
     return f

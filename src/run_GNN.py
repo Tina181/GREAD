@@ -4,19 +4,21 @@ import argparse
 import numpy as np
 import torch
 from torch_geometric.utils import add_remaining_self_loops, to_undirected
+<<<<<<< HEAD
 import random
 
+=======
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 from GNN import GNN
 from GNN_early import GNNEarly
 from data import get_dataset, set_train_val_test_split
 from heterophilic import get_fixed_splits
 from graph_rewiring import apply_beltrami
-
 from gread_params import best_params_dict, hetero_params, shared_gread_params, shared_grand_params
 from aggdiff_params import best_params_dict_aggdiff, hetero_params, shared_gread_params, shared_grand_params
 from utils import dirichlet_energy
 import wandb
-
+# conda activate grade
 
 def get_optimizer(name, parameters, lr, weight_decay=0):
     if name == 'sgd':
@@ -125,8 +127,13 @@ def train_baseline(model, optimizer, data, pos_encoding=None):
 
     loss = lf(out[data.train_mask], data.y.squeeze()[data.train_mask])
     loss.backward()
+    reaction_term = opt['reaction_term']
+    
+    # # 梯度裁剪
+    # grad_clip = 2
+    # torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
+    
     optimizer.step()
-
     return loss.item()
 
 
@@ -149,7 +156,6 @@ def test(model, data, pos_encoding=None, opt=None):  # opt required for runtime 
         loss = lf(logits[data.train_mask], data.y.squeeze()[data.train_mask])
         wandb_log(data, model, opt, loss, accs[0], accs[1], accs[2], epoch)
         model.odeblock.odefunc.wandb_step = 0  # resets the wandbstep counter in function after eval forward pass
-
     return accs
 
 @torch.no_grad()
@@ -209,11 +215,15 @@ def merge_cmd_args(cmd_opt, opt):
         opt['beltrami'] = True
 
 def main(cmd_opt):
+<<<<<<< HEAD
     # 设置随机种子
     set_random_seed(cmd_opt['seed'])
     
     # using best params in gread
     if cmd_opt['use_best_params']:
+=======
+    if cmd_opt['use_best_params']:  # use best params for dataset
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
         best_opt = best_params_dict[cmd_opt['dataset']]
         opt = {**cmd_opt, **best_opt}
         # merge_cmd_args(cmd_opt, opt)
@@ -226,31 +236,34 @@ def main(cmd_opt):
     else:
         opt = cmd_opt
 
-    if opt['function'] == 'gread':
-        opt = shared_gread_params(opt)
-    elif opt['function'] == 'laplacian':
-        opt = shared_grand_params(opt)
-    opt = hetero_params(opt)
+    if opt['function'] == 'gread':  # default=gread
+        opt = shared_gread_params(opt)  # define other params of gread
+    elif opt['function'] == 'laplacian':    # grand model
+        opt = shared_grand_params(opt)  #    define other params of grand
+    opt = hetero_params(opt)    # if dataset is hetero,eg.'chameleon', 'squirrel' define other params
 
 
-    if opt['wandb']:
+    if opt['wandb']:    # default = False
         os.environ["WANDB_MODE"] = "run"
     else:
         os.environ["WANDB_MODE"] = "disabled"
     
-    GPU_NUM = opt['gpu']
-    device = torch.device(f'cuda:{GPU_NUM}' if torch.cuda.is_available() else 'cpu')
+    GPU_NUM = opt['gpu']    # default=0
+    device = torch.device(f'cuda:{GPU_NUM}' if torch.cuda.is_available() else 'cpu')    # cuda
     opt['device'] = device
 
+    # wandb init and use wandb.config to sweep hyperparams
     if opt['wandb']:
         if 'wandb_run_name' in opt.keys():
-            wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
+            # wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
+            wandb_run = wandb.init(project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
         else:
-            wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True)
-        opt = wandb.config
+            # wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True)
+            wandb_run = wandb.init(project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
+        opt = wandb.config  # can sweep using wandb.config------> getting from sweep yaml file
         wandb.define_metric("epoch_step")  # Customize axes - https://docs.wandb.ai/guides/track/log
 
-    dataset = get_dataset(opt, '../data', opt['not_lcc'])
+    dataset = get_dataset(opt, '../data', opt['not_lcc'])   # load dataset
     if opt['hetero_SL']:
         dataset.data.edge_index, _ = add_remaining_self_loops(dataset.data.edge_index)
     if opt['hetero_undir']:
@@ -270,7 +283,11 @@ def main(cmd_opt):
                 dataset = get_dataset(opt, '../data')   # if use opt['not_lcc'], then the train_mask number exceed the number of nodes in the dataset, strange!
             data = get_fixed_splits(dataset.data, opt['dataset'], rep)  # rep: seed for split
             dataset.data = data
-
+            
+        # when dataset is not in ['Cora', 'Citeseer', 'Pubmed'] and not opt['geom_gcn_splits']
+        if not opt['planetoid_split'] and opt['dataset'] in ['Cora','Citeseer','Pubmed']:
+            dataset.data = set_train_val_test_split(np.random.randint(0, 1000), dataset.data, num_development=5000 if opt["dataset"] == "CoauthorCS" else 1500)
+        
         if opt['beltrami']:
             pos_encoding = apply_beltrami(dataset.data, opt).to(device)
             if opt['wandb']:
@@ -281,7 +298,7 @@ def main(cmd_opt):
             pos_encoding = None
 
         data = dataset.data.to(device)
-        if opt['function'] in ['laplacian', 'gread']:
+        if opt['function'] in ['laplacian', 'gread', 'diffagg']:
             model = GNN(opt, dataset, device).to(device) if opt["no_early"] else GNNEarly(opt, dataset, device).to(device)
         else:
             raise Exception('Unknown function')
@@ -320,7 +337,7 @@ def main(cmd_opt):
                 f"forward nfe {model.fm.sum}, backward nfe {model.bm.sum}, "
                 f"tmp_train: {tmp_train_acc:.4f}, tmp_val: {tmp_val_acc:.4f}, tmp_test: {tmp_test_acc:.4f}, "
                 f"Train: {train_acc:.4f}, Val: {val_acc:.4f}, Test: {test_acc:.4f}, Best time: {best_time:.4f}")
-
+            
             if np.isnan(loss):
                 wandb_run.finish()
                 break
@@ -375,7 +392,7 @@ if __name__ == '__main__':
 
     # GNN args
     parser.add_argument('--block', type=str, default='constant', help='constant, mixed, attention, hard_attention')
-    parser.add_argument('--function', type=str, default='gread', help='laplacian, transformer, greed, GAT')
+    parser.add_argument('--function', type=str, default='gread', help='laplacian, transformer, gread, GAT') # let function is laplacian then it is the grand model
     parser.add_argument('--hidden_dim', type=int, default=64, help='Hidden dimension.')
     parser.add_argument('--fc_out', type=eval, default=False, help='Add a fully connected layer to the decoder.')
     parser.add_argument('--input_dropout', type=float, default=0.5, help='Input dropout rate.')
@@ -402,7 +419,8 @@ if __name__ == '__main__':
     parser.add_argument('--adjoint_step_size', type=float, default=1, help='fixed step size when using fixed step adjoint solvers e.g. rk4')
     parser.add_argument('--tol_scale', type=float, default=1., help='multiplier for atol and rtol')
     parser.add_argument("--tol_scale_adjoint", type=float, default=1.0, help="multiplier for adjoint_atol and adjoint_rtol")
-    parser.add_argument("--max_nfe", type=int, default=1000, help="Maximum number of function evaluations in an epoch. Stiff ODEs will hang if not set.")
+    # 适当增加max_nfe: 原数值：1000
+    parser.add_argument("--max_nfe", type=int, default=5000, help="Maximum number of function evaluations in an epoch. Stiff ODEs will hang if not set.")
     parser.add_argument('--no_early', type=eval, default=True)
     parser.add_argument('--earlystopxT', type=float, default=3, help='multiplier for T used to evaluate best model')
     parser.add_argument("--max_test_steps", type=int, default=100, help="Maximum number steps for the dopri5Early test integrator. used if getting OOM errors at test time")
@@ -413,10 +431,11 @@ if __name__ == '__main__':
     parser.add_argument('--kinetic_energy', type=float, default=None, help="int_t ||f||_2^2")
     parser.add_argument('--directional_penalty', type=float, default=None, help="int_t ||(df/dx)^T f||^2")
     # Attention args
+    # 默认单头注意力
     parser.add_argument('--leaky_relu_slope', type=float, default=0.2,
                         help='slope of the negative part of the leaky relu used in attention')
     parser.add_argument('--attention_dropout', type=float, default=0., help='dropout of attention weights')
-    parser.add_argument('--heads', type=int, default=4, help='number of attention heads')
+    parser.add_argument('--heads', type=int, default=1, help='number of attention heads')
     parser.add_argument('--attention_norm_idx', type=int, default=0, help='0 = normalise rows, 1 = normalise cols')
     parser.add_argument('--attention_dim', type=int, default=64,
                         help='the size to project x to before calculating att scores')
@@ -521,7 +540,7 @@ if __name__ == '__main__':
     parser.add_argument('--wandb', action='store_true', help="flag if logging to wandb")
     parser.add_argument('--wandb_sweep', action='store_true',help="flag if sweeping")
     parser.add_argument('--wandb_entity', default="username", type=str)
-    parser.add_argument('--wandb_project', default="example", type=str)
+    parser.add_argument('--wandb_project', default="grade", type=str)
     parser.add_argument('--wandb_run_name', default=None, type=str)
     parser.add_argument('--run_track_reports', action='store_true', help="run_track_reports")
     parser.add_argument('--save_wandb_reports', action='store_true', help="save_wandb_reports")

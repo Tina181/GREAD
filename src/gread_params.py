@@ -1,6 +1,6 @@
 import argparse
 """
-
+add args: --use_best_params  ---->using the best parameters found in the search process
 """
 best_params_dict = {
 'texas': {'reaction_term':'bspm', 'alpha_dim':'sc', 'beta_dim':'vc', 'beta_diag':True, 
@@ -44,6 +44,7 @@ best_params_dict = {
           'input_dropout': 0.6759632513264229, 'dropout': 0.09328362336851624,
           'use_mlp': False, 'm2_mlp': True, 'XN_activation': True
            },
+
 'Cora': {'reaction_term':'bspm', 'alpha_dim':'vc', 'beta_dim':'vc', 'beta_diag':True, 
           'method':'rk4', 'time': 3.790184078169178,'step_size':0.5,
           'epoch':200, 'lr': 0.011402915506754104 ,'decay': 0.008014968630105014,
@@ -74,13 +75,13 @@ def shared_grand_params(opt):
     opt['epoch'] = 200
     opt['lr'] = 0.001
     opt['method'] = 'euler'
-    opt['geom_gcn_splits'] = True
+    # opt['geom_gcn_splits'] = True
     return opt
 
 def shared_gread_params(opt):
     opt['function'] = 'gread'
     opt['optimizer'] = 'adam'
-    opt['geom_gcn_splits'] = True
+    # opt['geom_gcn_splits'] = True   # split params
     return opt
 
 def hetero_params(opt):

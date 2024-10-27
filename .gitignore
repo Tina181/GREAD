@@ -7,4 +7,25 @@ __pycache__
 # dataset
 data/*
 src/splits/*
+<<<<<<< HEAD
 src/wandb/*
+=======
+src/data/*
+
+# wandb
+src/wandb/*
+src/sweep/wandb/*
+src/sweep2/*
+src/sweep2/wandb/*
+src/sweep_saving
+
+# 
+grade/*
+
+# test
+src/test.ipynb
+
+# notebook
+notebook/*
+
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8

@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 program: run_GNN.py
+=======
+program: run_GNN_sweep.py
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 metric:
   name: test_mean
   goal: maximize
 method: bayes  # # You can choose the method to be grid, random or bayes
 
 parameters:
+<<<<<<< HEAD
   gpu:
     values: [5]
+=======
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   dataset:
     values: ['chameleon']
   epoch:
@@ -20,8 +27,11 @@ parameters:
   reaction_term:
     values: ['aggdiff-gat']
   #   values: ['cos_1', 'cos_2', 'cos_3', ]
+<<<<<<< HEAD
   heads:
     values: [1, 4, 8]
+=======
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   data_norm:
     values: ['rw', 'gcn']
   self_loop_weight:
@@ -35,6 +45,7 @@ parameters:
 
   diffusion_rate1:
     distribution: q_uniform
+<<<<<<< HEAD
     min: 0
     max: 1
     q: 0.01
@@ -43,10 +54,21 @@ parameters:
     min: 0
     max: 1
     q: 0.01
+=======
+    min: 1e-5
+    max: 1
+    q: 1e-3
+  diffusion_rate2:
+    distribution: q_uniform
+    min: 1e-5
+    max: 1
+    q: 1e-3
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   method:
     values: ['rk4', 'euler']
   step_size:
     distribution: q_uniform
+<<<<<<< HEAD
     min: 1
     max: 2
     q: 0.05
@@ -60,6 +82,21 @@ command:
   - python
   - run_GNN.py
   - --geom_gcn_splits
+=======
+    min: 0.1
+    max: 0.5
+    q: 0.05
+  time:  
+    distribution: q_uniform
+    min: 2
+    max: 2.5
+    q: 0.01
+command:
+  - ${env}
+  - python
+  - run_GNN_sweep.py
+  - --num_splits=10
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   - --wandb
   - --wandb_project=grade-sweep
   - --beta_diag=True

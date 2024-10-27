@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 program: run_GNN.py
+=======
+program: run_GNN_sweep.py
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 # num_samples: 100
 metric:
   name: test_mean
@@ -56,7 +60,11 @@ parameters:
 command:
   - ${env}
   - python
+<<<<<<< HEAD
   - run_GNN.py
+=======
+  - run_GNN_sweep.py
+>>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   - --geom_gcn_splits
   - --wandb
   - --wandb_project=grade-sweep

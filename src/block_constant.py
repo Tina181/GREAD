@@ -8,7 +8,7 @@ class ConstantODEblock(ODEblock):
     super(ConstantODEblock, self).__init__(odefunc, regularization_fns, opt, data, device, t)
 
     self.aug_dim = 2 if opt['augment'] else 1
-    self.odefunc = odefunc(self.aug_dim * opt['hidden_dim'], self.aug_dim * opt['hidden_dim'], opt, data, device)
+    self.odefunc = odefunc(self.aug_dim * opt['hidden_dim'], self.aug_dim * opt['hidden_dim'], opt, data, device) # ODEFuncGread
     if opt['data_norm'] == 'rw':
       edge_index, edge_weight = get_rw_adj(data.edge_index, edge_weight=data.edge_attr, norm_dim=1,
                                            fill_value=opt['self_loop_weight'],
@@ -41,7 +41,7 @@ class ConstantODEblock(ODEblock):
 
     reg_states = tuple(torch.zeros(x.size(0)).to(x) for i in range(self.nreg))
 
-    func = self.reg_odefunc if self.training and self.nreg > 0 else self.odefunc
+    func = self.reg_odefunc if self.training and self.nreg > 0 else self.odefunc  # ODEFuncGread
     state = (x,) + reg_states if self.training and self.nreg > 0 else x
 
     if self.opt["adjoint"] and self.training:

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 program: run_GNN.py
-=======
-program: run_GNN_sweep.py
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
+
 # num_samples: 100
 metric:
   name: test_mean
@@ -17,15 +14,10 @@ parameters:
   epoch:
     values: [200]
   alpha_dim:
-<<<<<<< HEAD
     values: ['vc']
   beta_dim:
     values: ['vc']
-=======
-    values: ['vc', 'sc']
-  beta_dim:
-    values: ['vc', 'sc']
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
+
   hidden_dim:
     values: [32, 64, 128, 256]
   reaction_term:
@@ -38,17 +30,7 @@ parameters:
   self_loop_weight:
     values: [0, 1.]
   use_mlp:
-<<<<<<< HEAD
-    values: [false]
-  m2_mlp:
-    values: [false]
-  XN_activation:
-    values: [true]
 
-  diffusion_rate1:
-    distribution: q_uniform
-    min: 0.2
-=======
     values: [false, true]
   m2_mlp:
     values: [false, true]
@@ -58,23 +40,16 @@ parameters:
   diffusion_rate1:
     distribution: q_uniform
     min: 0
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
     max: 1
     q: 0.05
   diffusion_rate2:
     distribution: q_uniform
     min: 0
-<<<<<<< HEAD
     max: 0.8
     q: 0.05
   method:
     values: ['rk4']
-=======
-    max: 1
-    q: 0.05
-  method:
-    values: ['rk4', 'euler']
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
+
   step_size:
     distribution: q_uniform
     min: 0
@@ -83,7 +58,6 @@ parameters:
   time:  
     distribution: uniform
     min: 2
-<<<<<<< HEAD
     max: 3
 command:
   - ${env}
@@ -91,14 +65,6 @@ command:
   - run_GNN.py
   - --geom_gcn_splits
   - --gpu=5
-=======
-    max: 2.5
-command:
-  - ${env}
-  - python
-  - run_GNN_sweep.py
-  - --geom_gcn_splits
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   - --wandb
   - --wandb_project=grade-sweep
   - --beta_diag=True

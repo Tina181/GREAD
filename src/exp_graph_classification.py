@@ -8,13 +8,16 @@ import random
 
 from GNN import GNN
 from GNN_early import GNNEarly
-from data import get_dataset, set_train_val_test_split
-from heterophilic import get_fixed_splits
+# from data import get_dataset, set_train_val_test_split
+# from heterophilic import get_fixed_splits
 from graph_rewiring import apply_beltrami
 from gread_params import best_params_dict, hetero_params, shared_gread_params, shared_grand_params
 from aggdiff_params import best_params_dict_aggdiff, hetero_params, shared_gread_params, shared_grand_params
 from utils import dirichlet_energy
 import wandb
+from graph_class.data_graph_class import Data
+import pickle as pkl
+from sklearn.model_selection import StratifiedKFold
 # conda activate grade
 
 def get_optimizer(name, parameters, lr, weight_decay=0):
@@ -125,11 +128,6 @@ def train_baseline(model, optimizer, data, pos_encoding=None):
     loss = lf(out[data.train_mask], data.y.squeeze()[data.train_mask])
     loss.backward()
     reaction_term = opt['reaction_term']
-    
-    # # 梯度裁剪
-    # grad_clip = 2
-    # torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
-    
     optimizer.step()
     return loss.item()
 
@@ -211,23 +209,44 @@ def merge_cmd_args(cmd_opt, opt):
     if cmd_opt['beltrami']:
         opt['beltrami'] = True
 
-def main(cmd_opt):
-    # 设置随机种子
-    set_random_seed(cmd_opt['seed'])
+
+def get_class_dataset(path, dataset, sfdp_path):
+    # load data
+    data = Data(path, dataset, sfdp_path)  # 'data/PROTEINS', 'PROTEINS', 'bin/sfdp_linux'
     
-    # using best params in gread
-    if cmd_opt['use_best_params']:  # use best params for dataset
-        best_opt = best_params_dict[cmd_opt['dataset']]
-        opt = {**cmd_opt, **best_opt}
-        # merge_cmd_args(cmd_opt, opt)
-        
-    if cmd_opt['use_best_params_aggdiff']:  # 使用aggdiff的最优参数
-        best_opt = best_params_dict_aggdiff[cmd_opt['dataset']]
-        opt = {**cmd_opt, **best_opt}
-        # merge_cmd_args(cmd_opt, opt)
-        
-    else:
-        opt = cmd_opt
+    #ratio = [0.8,0.1,0.1]  # adjs, node features, labels, .... (many graphs:1067, graph classes: 2)
+    net_coarsened_adj,  init_net_feat, \
+        net_label, mask_merged, mask_node, degrees,n_classes =  data.load()  # graph feat and labels of shape (batch_size,N,D), (batch_size,)
+    num_net = len(net_label)  # 1067   number of graphs
+    out_dim = n_classes    # 2
+    print('num classes', n_classes)
+    return net_coarsened_adj, init_net_feat, net_label, mask_merged, mask_node, degrees, n_classes
+
+def adj_process(adjs_ls):
+        adj_num = len(adjs_ls)
+        adjss = []
+        mask_out = []
+        for k in range(adj_num):
+            adjs = adjs_ls[k]
+            adjs = torch.FloatTensor(adjs)
+            level_num, N, _ = adjs.shape
+            mask = torch.zeros((level_num,N))
+            for i in range(level_num):
+                mask[i][torch.nonzero(adjs[i])[:,0].unique()] = 1.0
+                adjs[i] += torch.eye(N)
+                adjs[i][adjs[i]>0.] = 1.
+                degree_matrix = torch.sum(adjs[i], dim=-1, keepdim=False)
+                degree_matrix = torch.pow(degree_matrix, -1/2)
+                degree_matrix[degree_matrix == float("inf")] = 0.
+                degree_matrix = torch.diag(degree_matrix)
+                adjs[i] = torch.mm(degree_matrix, adjs[i])
+                adjs[i] = torch.mm(adjs[i],degree_matrix)
+            adjss.append(adjs)
+            mask_out.append(mask)
+        return adjss,mask_out
+
+def main(cmd_opt):
+    opt = cmd_opt
 
     if opt['function'] == 'gread':  # default=gread
         opt = shared_gread_params(opt)  # define other params of gread
@@ -256,41 +275,187 @@ def main(cmd_opt):
         opt = wandb.config  # can sweep using wandb.config------> getting from sweep yaml file
         wandb.define_metric("epoch_step")  # Customize axes - https://docs.wandb.ai/guides/track/log
 
-    dataset = get_dataset(opt, '../data', opt['not_lcc'])   # load dataset
-    if opt['hetero_SL']:
-        dataset.data.edge_index, _ = add_remaining_self_loops(dataset.data.edge_index)
-    if opt['hetero_undir']:
-        dataset.data.edge_index = to_undirected(dataset.data.edge_index)
+    
+    # generate logf, checkpoint_root
+    logf = open("%s_results.txt" % args.dataset, "a")   # <_io.TextIOWrapper name='PROTEINS_results.txt' mode='a' encoding='UTF-8'>
+    checkpoint_root = f"checkpoint/{args.dataset}"  # 'checkpoint/PROTEINS'
+    if not os.path.exists(checkpoint_root):
+        os.makedirs(checkpoint_root)
+    with open(f"{checkpoint_root}/args.pkl", "wb") as f:    # checkpoint/PROTEINS/args.pkl
+        pkl.dump(args, f)   # args: <class 'argparse.Namespace'> -> save args config to file f
+    acc_records = []
+    auc_records = []
+    for repeat in range(args.repeats):  # repeat=1: num of repeats for experiment
+        print("repeat", repeat)
+        logf.write("repeat" + str(repeat) + "\n")
+         # kf = KFold(n_splits=5, shuffle=True, random_state=1)
+        n_fold = args.n_fold    # 5
+        if not os.path.exists(f"{checkpoint_root}/{n_fold}fold_idx"):   # create k-fold folder if not exist
+            os.mkdir(f"{checkpoint_root}/{n_fold}fold_idx")
+        kf = StratifiedKFold(n_splits=n_fold, random_state=42, shuffle=True)    # StratifiedKFold: split dataset into k folds with equal class distribution
+        path = '/mnt/data1/wangchenguang/a100_bkp/codes/ReiPool/data/PROTEINS'
+        sfdp_path = '/mnt/data1/wangchenguang/a100_bkp/codes/ReiPool/bin/sfdp_linux'
+        
+        # load data
+        """
+        Args:
+            features: init graph feature, list of ndarray, shape (batch,N,D) # N is not consitent
+            adjs: coarsened graph adjs, list of ndarray, shape (batch,level+1,N,N) 
+            mask_merged: coarsened merged mask, list of ndarray, shape (batch,level,N,N)
+            mask_node: coarsened mask, list of ndarray, shape (batch,level,N)
+            sim_thres: if None, not using cosine similarity, else the threshold
+            drop_coars: if True, drop the collapsed node features
+        """
+        net_coarsened_adj, init_net_feat, \
+            net_label,mask_merged,mask_node,degrees,n_classes = get_class_dataset(path, args.dataset, sfdp_path)
+        features = [torch.FloatTensor(feat).to(device) for feat in init_net_feat]   # type = List[ndarray], len=num_graphs=1067, features[0].shape=(N, D)
+        adjs, masks = adj_process(net_coarsened_adj)    # type =List[ndarray], len=num_graphs, adjs[0].shape: (1, N, N)
+        adjs = [adj.to(device) for adj in adjs] # type = List[tensor], len=num_graphs, shape: (1, N, N)
+        masks = [mask.to(device) for mask in masks] # list, len=num_graphs, masks[0].shape: (1, N)
+        mask_merged = [torch.FloatTensor(mask).to(device) for mask in mask_merged]  # list, len=num_graphs, mask_merged[0].shape: (0, N, N) -> []
+        mask_node = [torch.FloatTensor(mask).to(device) for mask in mask_node]  # list, len=num_graphs, mask_node[0].shape: (0, N) -> []
+        dim_in = features[0].shape[-1]
+        
+        # get edge_index
+        index = 1  # graph 1 in all graphs
+        adj = adjs[index][0]   # (1, N, N) -> (N, N)
+        mask = masks[index][0]  # (1, N) -> (N)
+        feat = features[index]  # (N, D) 
+        #(E, 2) -> sparse adj matrix -> (2, E)
+        
+        edge_index = torch.nonzero(adj).permute(1, 0)   #(E, 2) -> sparse adj matrix -> (2, E)
+        feat = gcn(feat, adj, mask)
+     
+        
+        
+        inds = torch.nonzero(adj)   #(132, 2) -> sparse adj matrix
+        new_inds = torch.unique(inds[:,0])  # source nodes index    (22,)
+        edge_index = []
+        new_inds = new_inds.cpu().numpy()   # (22,)
+        inds = inds.cpu().numpy()   # (132, 2)
+
+        inds2new = {k:i for i,k in enumerate(new_inds)} # k: key i: val
+        for i in range(len(inds)):  # len(inds) = 132
+            edge_index.append([inds2new[inds[i,0]],inds2new[inds[i,1]]])
+        edge_index = torch.tensor(edge_index,dtype=torch.long).t().contiguous().to(x.device)    # (2, 132) create edge_index
+        '''use gat layer to compute'''
+        output = self.gat(feat,edge_index)  # feat: (22, 3), edge_index: (2, 132)
+        output = F.elu(output)   # (82, 128)
+         
+         
+        
+        # 2\ model
+        # model = GNN(opt, num_classes=n_classes, device=device)
+        # model.to(device)
+        
+        for k, (train_idx, test_idx) in enumerate(
+            kf.split(net_coarsened_adj, net_label)
+        ):
+            print(k)
+            np.random.shuffle(train_idx)    # train_idx: (853,) -> train dataset index -> shuffle
+            val_idx = train_idx[len(train_idx) - len(test_idx) :]   # text_idx: (214) val_idx
+            train_idx = train_idx[: len(train_idx) - len(test_idx)]
+            np.savetxt(
+                f"{checkpoint_root}/{n_fold}fold_idx/train_idx-{k+1}.txt",  # save every k-fold train_idx to file
+                train_idx,
+                fmt="%d",
+            )
+            np.savetxt(
+                f"{checkpoint_root}/{n_fold}fold_idx/val_idx-{k+1}.txt",    # save every k-fold val_idx to file
+                val_idx,
+                fmt="%d",
+            )
+            np.savetxt(
+                f"{checkpoint_root}/{n_fold}fold_idx/test_idx-{k+1}.txt",   # save every k-fold test_idx to file
+                test_idx,
+                fmt="%d",
+            )
+
+    # 设置随机种子
+    set_random_seed(cmd_opt['seed'])
+    
+    # # using best params in gread
+    # if cmd_opt['use_best_params']:  # use best params for dataset
+    #     best_opt = best_params_dict[cmd_opt['dataset']]
+    #     opt = {**cmd_opt, **best_opt}
+    #     # merge_cmd_args(cmd_opt, opt)
+        
+    # if cmd_opt['use_best_params_aggdiff']:  # 使用aggdiff的最优参数
+    #     best_opt = best_params_dict_aggdiff[cmd_opt['dataset']]
+    #     opt = {**cmd_opt, **best_opt}
+    #     # merge_cmd_args(cmd_opt, opt)
+        
+    opt = cmd_opt
+
+    if opt['function'] == 'gread':  # default=gread
+        opt = shared_gread_params(opt)  # define other params of gread
+    elif opt['function'] == 'laplacian':    # grand model
+        opt = shared_grand_params(opt)  #    define other params of grand
+    opt = hetero_params(opt)    # if dataset is hetero,eg.'chameleon', 'squirrel' define other params
+
+
+    if opt['wandb']:    # default = False
+        os.environ["WANDB_MODE"] = "run"
+    else:
+        os.environ["WANDB_MODE"] = "disabled"
+    
+    GPU_NUM = opt['gpu']    # default=0
+    device = torch.device(f'cuda:{GPU_NUM}' if torch.cuda.is_available() else 'cpu')    # cuda
+    opt['device'] = device
+
+    # wandb init and use wandb.config to sweep hyperparams
+    if opt['wandb']:
+        if 'wandb_run_name' in opt.keys():
+            # wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
+            wandb_run = wandb.init(project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
+        else:
+            # wandb_run = wandb.init(entity=opt['wandb_entity'], project=opt['wandb_project'], config=opt, allow_val_change=True)
+            wandb_run = wandb.init(project=opt['wandb_project'], config=opt, allow_val_change=True, name=opt['wandb_run_name'])
+        opt = wandb.config  # can sweep using wandb.config------> getting from sweep yaml file
+        wandb.define_metric("epoch_step")  # Customize axes - https://docs.wandb.ai/guides/track/log
+
+    # # load dataset
+    # dataset = get_dataset(opt, '../data', opt['not_lcc'])   # load dataset
+    # if opt['hetero_SL']:
+    #     dataset.data.edge_index, _ = add_remaining_self_loops(dataset.data.edge_index)
+    # if opt['hetero_undir']:
+    #     dataset.data.edge_index = to_undirected(dataset.data.edge_index)
 
     this_test = test
     results = []
     for rep in range(opt['num_splits']):
         print(f"rep {rep}")
-        if not opt['planetoid_split'] and opt['dataset'] in ['Cora', 'Citeseer', 'Pubmed']:
-            dataset.data = set_train_val_test_split(np.random.randint(0, 1000), dataset.data,
-                                                    num_development=5000 if opt["dataset"] == "CoauthorCS" else 1500,
-                                                    num_per_class=opt['num_train_per_class'])
-        if opt['geom_gcn_splits']:
-            if opt['dataset'] == "Citeseer":
-                # dataset = get_dataset(opt, '../data', opt['not_lcc']) #geom-gcn citeseer uses splits over LCC and not_LCC so need to reload each rep/split
-                dataset = get_dataset(opt, '../data')   # if use opt['not_lcc'], then the train_mask number exceed the number of nodes in the dataset, strange!
-            data = get_fixed_splits(dataset.data, opt['dataset'], rep)  # rep: seed for split
-            dataset.data = data
-            
-        # when dataset is not in ['Cora', 'Citeseer', 'Pubmed'] and not opt['geom_gcn_splits']
-        if not opt['planetoid_split'] and opt['dataset'] in ['Cora','Citeseer','Pubmed']:
-            dataset.data = set_train_val_test_split(np.random.randint(0, 1000), dataset.data, num_development=5000 if opt["dataset"] == "CoauthorCS" else 1500)
         
-        if opt['beltrami']:
-            pos_encoding = apply_beltrami(dataset.data, opt).to(device)
-            if opt['wandb']:
-                wandb.config.update({'pos_enc_dim': pos_encoding.shape[1]}, allow_val_change=True)
-            else:
-                opt['pos_enc_dim'] = pos_encoding.shape[1]
-        else:
-            pos_encoding = None
+        # load dataset
+        
+        
+        # if not opt['planetoid_split'] and opt['dataset'] in ['Cora', 'Citeseer', 'Pubmed']:
+        #     dataset.data = set_train_val_test_split(np.random.randint(0, 1000), dataset.data,
+        #                                             num_development=5000 if opt["dataset"] == "CoauthorCS" else 1500,
+        #                                             num_per_class=opt['num_train_per_class'])
+        # if opt['geom_gcn_splits']:
+        #     if opt['dataset'] == "Citeseer":
+        #         # dataset = get_dataset(opt, '../data', opt['not_lcc']) #geom-gcn citeseer uses splits over LCC and not_LCC so need to reload each rep/split
+        #         dataset = get_dataset(opt, '../data')   # if use opt['not_lcc'], then the train_mask number exceed the number of nodes in the dataset, strange!
+        #     data = get_fixed_splits(dataset.data, opt['dataset'], rep)  # rep: seed for split
+        #     dataset.data = data
+            
+        # # when dataset is not in ['Cora', 'Citeseer', 'Pubmed'] and not opt['geom_gcn_splits']
+        # if not opt['planetoid_split'] and opt['dataset'] in ['Cora','Citeseer','Pubmed']:
+        #     dataset.data = set_train_val_test_split(np.random.randint(0, 1000), dataset.data, num_development=5000 if opt["dataset"] == "CoauthorCS" else 1500)
+        
+        # if opt['beltrami']:
+        #     pos_encoding = apply_beltrami(dataset.data, opt).to(device)
+        #     if opt['wandb']:
+        #         wandb.config.update({'pos_enc_dim': pos_encoding.shape[1]}, allow_val_change=True)
+        #     else:
+        #         opt['pos_enc_dim'] = pos_encoding.shape[1]
+        # else:
+        #     pos_encoding = None
 
-        data = dataset.data.to(device)
+        # data = dataset.data.to(device)
+        
+        # define model
         if opt['function'] in ['laplacian', 'gread', 'diffagg']:
             model = GNN(opt, dataset, device).to(device) if opt["no_early"] else GNNEarly(opt, dataset, device).to(device)
         else:
@@ -305,9 +470,9 @@ def main(cmd_opt):
             patience_count = 0
         for epoch in range(1, opt['epoch']):
             start_time = time.time()
-            loss = train(model, optimizer, data, pos_encoding)
+            loss = train(model, optimizer, data, pos_encoding = None)
 
-            tmp_train_acc, tmp_val_acc, tmp_test_acc = this_test(model, data, pos_encoding, opt)
+            tmp_train_acc, tmp_val_acc, tmp_test_acc = this_test(model, data, pos_encoding = None, opt)
 
             best_time = opt['time']
             if tmp_val_acc > val_acc:
@@ -371,7 +536,7 @@ if __name__ == '__main__':
     parser.add_argument('--decay', type=float, default=5e-4, help='Weight decay for optimization')
 
     # data args
-    parser.add_argument('--dataset', type=str, default='Cora', help='Cora, Citeseer, Pubmed, Computers, Photo, CoauthorCS, ogbn-arxiv, voc_superpixels')
+    parser.add_argument('--dataset', type=str, default='PROTEINS', help='PROTEINS, DD, MUTAG, IMDB-BINARY, IMDB-MULTI, COLLAB')
     parser.add_argument('--data_norm', type=str, default='rw', help='rw for random walk, gcn for symmetric gcn norm')
     parser.add_argument('--self_loop_weight', type=float, default=0.0,help='Weight of self-loops.')
     parser.add_argument('--use_labels', dest='use_labels', action='store_true', help='Also diffuse labels')
@@ -514,7 +679,10 @@ if __name__ == '__main__':
     parser.add_argument('--layer_norm', type=str, default=False, help='use layer norm before computing reaction_term')
     parser.add_argument('--seed', type=int, default=42, help='random seed')
     
-    # with source term args
+    # graph classification args
+    parser.add_argument('--repeats', type=int, default=1, help='number of times to repeatss the experiment')
+    parser.add_argument('--n_fold', type=int, default=5, help='number of folds for cross validation')
+    
     parser.add_argument('--trusted_mask', type=eval, default=False, help='mask')
     parser.add_argument('--noise', type=float, default=0.0)
     parser.add_argument('--noise_pos', type=str, help='all, test')

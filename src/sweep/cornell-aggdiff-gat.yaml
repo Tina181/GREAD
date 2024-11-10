@@ -1,26 +1,13 @@
-<<<<<<< HEAD
 program: run_GNN.py
 metric:
   name: test_mean
   goal: maximize
 method: bayes  # # You can choose the method to be grid, random or bayes
-=======
-program: run_GNN_sweep.py
-# num_samples: 100
-metric:
-  name: test_mean
-  goal: maximize
-# method: random  # # You can choose the method to be grid, random or bayes
-method: bayes
-# random_state_seed: 42  # 设置随机种子以获得可复现的结果
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
-
 parameters:
   dataset:
     values: ['cornell']
   epoch:
     values: [200]
-<<<<<<< HEAD
   time_encoding:
     values: ['None']
   alpha_dim:
@@ -60,50 +47,11 @@ parameters:
   step_size:
     distribution: q_uniform
     min: 0.2
-=======
-  alpha_dim:
-    values: ['vc', 'sc']
-  beta_dim:
-    values: ['vc', 'sc']
-  hidden_dim:
-    values: [32, 64, 128, 256]
-  reaction_term:
-    values: ['aggdiff-gat']
-  #   values: ['cos_1', 'cos_2', 'cos_3', ]
-  heads:
-    values: [1, 4, 8]
-  data_norm:
-    values: ['rw', 'gcn']
-  self_loop_weight:
-    values: [0, 1.]
-  use_mlp:
-    values: [false, true]
-  m2_mlp:
-    values: [false, true]
-  XN_activation:
-    values: [false, true]
 
-  diffusion_rate1:
-    distribution: q_uniform
-    min: 0
-    max: 1
-    q: 0.05
-  diffusion_rate2:
-    distribution: q_uniform
-    min: 0
-    max: 1
-    q: 0.05
-  method:
-    values: ['rk4']
-  step_size:
-    distribution: q_uniform
-    min: 0
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
     max: 0.5
     q: 0.05
   time:  
     distribution: uniform
-<<<<<<< HEAD
     min: 0.3
     max: 1.0
 
@@ -112,14 +60,6 @@ command:
   - python
   - run_GNN.py
   - --gpu=3
-=======
-    min: 0.5
-    max: 2
-command:
-  - ${env}
-  - pyth
-  - run_GNN_sweep.py
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   - --geom_gcn_splits
   - --wandb
   - --wandb_project=grade-sweep

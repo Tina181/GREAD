@@ -47,20 +47,19 @@ def get_dataset(opt: dict, data_dir, use_lcc: bool = False) -> InMemoryDataset:
   else:
     raise Exception('Unknown dataset.')
 
-<<<<<<< HEAD
+
   # calculate the largest connected component
   if use_lcc:
     lcc = get_largest_connected_component(dataset)  # (2120,)
 
     x_new = dataset.data.x[lcc] # torch.Size([2120, 3703])
     y_new = dataset.data.y[lcc] # torch.Size([2120])
-=======
+
   if use_lcc: # use the largest connected component
     lcc = get_largest_connected_component(dataset)
 
     x_new = dataset.data.x[lcc] # torch.Size([7487, 745])
     y_new = dataset.data.y[lcc] # torch.Size([7487])
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 
     row, col = dataset.data.edge_index.numpy()  # (2, 10556)
     edges = [[i, j] for i, j in zip(row, col) if i in lcc and j in lcc]

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 program: run_GNN.py
-=======
-program: run_GNN_sweep.py
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 # num_samples: 100
 metric:
   name: test_mean
@@ -25,13 +21,10 @@ parameters:
   reaction_term:
     values: ['aggdiff-log']
   #   values: ['cos_1', 'cos_2', 'cos_3', ]
-<<<<<<< HEAD
   log_eps:
     distribution: uniform
     min: 0.1
     max: 1.0
-=======
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   data_norm:
     values: ['rw', 'gcn']
   self_loop_weight:
@@ -67,11 +60,7 @@ parameters:
 command:
   - ${env}
   - python
-<<<<<<< HEAD
   - run_GNN.py
-=======
-  - run_GNN_sweep.py
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   - --geom_gcn_splits
   - --wandb
   - --wandb_project=grade-sweep

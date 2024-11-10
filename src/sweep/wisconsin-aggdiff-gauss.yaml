@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 program: run_GNN.py
-=======
-program: run_GNN_sweep.py
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 # num_samples: 100
 metric:
   name: test_mean
@@ -22,7 +18,6 @@ parameters:
     values: ['vc', 'sc']
   hidden_dim:
     values: [32, 64, 128, 256]
-<<<<<<< HEAD
   time_encoding:
     values: ['None', 'mlp']
   reaction_term:
@@ -30,11 +25,6 @@ parameters:
   #   values: ['cos_1', 'cos_2', 'cos_3', ]
   heads:
     values: [1, 4, 8]
-=======
-  reaction_term:
-    values: ['aggdiff-gauss']
-  #   values: ['cos_1', 'cos_2', 'cos_3', ]
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   data_norm:
     values: ['rw', 'gcn']
   self_loop_weight:
@@ -70,14 +60,9 @@ parameters:
 command:
   - ${env}
   - python
-<<<<<<< HEAD
   - run_GNN.py
   - --geom_gcn_splits
   - --gpu=5
-=======
-  - run_GNN_sweep.py
-  - --geom_gcn_splits
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   - --wandb
   - --wandb_project=grade-sweep
   - --beta_diag=True

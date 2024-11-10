@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 program: run_GNN.py
-=======
-program: run_GNN_sweep.py
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 # num_samples: 100
 metric:
   name: test_mean
@@ -55,7 +51,6 @@ parameters:
     q: 0.05
   time:  
     distribution: uniform
-<<<<<<< HEAD
     min: 1
     max: 3
 command:
@@ -64,15 +59,6 @@ command:
   - run_GNN.py
   - --geom_gcn_splits
   - --gpu=4
-=======
-    min: 2
-    max: 2.5
-command:
-  - ${env}
-  - python
-  - run_GNN_sweep.py
-  - --geom_gcn_splits
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   - --wandb
   - --wandb_project=grade-sweep
   - --beta_diag=True

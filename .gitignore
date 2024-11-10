@@ -7,9 +7,7 @@ __pycache__
 # dataset
 data/*
 src/splits/*
-<<<<<<< HEAD
-src/wandb/*
-=======
+
 src/data/*
 
 # wandb
@@ -27,5 +25,3 @@ src/test.ipynb
 
 # notebook
 notebook/*
-
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8

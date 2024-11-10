@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 program: run_GNN.py
-=======
-program: run_GNN_sweep.py
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 # num_samples: 100
 metric:
   name: test_mean
@@ -38,11 +34,8 @@ parameters:
   XN_activation:
     values: [false, true]
 
-<<<<<<< HEAD
   time_encoding:
     values: ['mlp', 'None']
-=======
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   diffusion_rate1:
     distribution: q_uniform
     min: 0
@@ -67,12 +60,8 @@ parameters:
 command:
   - ${env}
   - python
-<<<<<<< HEAD
   - run_GNN.py
   - --gpu=4
-=======
-  - run_GNN_sweep.py
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
   - --geom_gcn_splits
   - --wandb
   - --wandb_project=grade-sweep

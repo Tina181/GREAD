@@ -4,19 +4,13 @@ import torch_sparse
 from torch.nn.init import uniform, xavier_uniform_
 from base_classes import ODEFunc
 from utils import MaxNFEException
-<<<<<<< HEAD
+
 from torch_geometric.utils import softmax
 from torch_geometric.nn import MessagePassing
 from torch_geometric.utils import degree 
 import torch.nn.functional as F
 import math
 from torch.nn import LayerNorm
-
-=======
-import numpy as np
-from torch_geometric.utils import softmax
-import math
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 
 """
 Define the ODE function.
@@ -36,7 +30,6 @@ class ODEFuncGread(ODEFunc):
     self.out_features = out_features
     self.diffusion_rate1 = opt['diffusion_rate1']
     self.diffusion_rate2 = opt['diffusion_rate2']
-<<<<<<< HEAD
     self.layer_norm = LayerNorm(out_features)
     self.nfe = 0
     if opt['reaction_term']=='aggdiff-gat':
@@ -50,9 +43,6 @@ class ODEFuncGread(ODEFunc):
     if opt['reaction_term']=='aggdiff-gauss':
       self.Gauss_Kernel =SpGraphgaussKernelLayer(self.in_features, self.out_features, self.opt, self.device)
     
-=======
-
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
     self.reaction_tanh = False
     self.epsilon = 1.0  # gaussian kernel variance (取为0.1时会梯度爆炸 loss=nan)
     if opt['beta_diag'] == True:
@@ -172,7 +162,6 @@ class ODEFuncGread(ODEFunc):
       reaction = x - ax# L = I - A
       if self.reaction_tanh == True:
         reaction = torch.tanh(reaction)
-<<<<<<< HEAD
     elif self.opt['reaction_term'] == 'aggdiff-gat':
       k = self.GAT_Kernel(x, self.edge_index)  # torch.Size([10138, 1])
       k = k.to(self.device)
@@ -197,9 +186,6 @@ class ODEFuncGread(ODEFunc):
       kx = torch_sparse.spmm(self.edge_index, k, n, n, x) # [2485, 64]
       kx = kx.to(self.device)
       reaction = (ax-x)*kx  # 1e-4 is a hyperparameter to avoid gradient explosion
-    else:
-      raise Exception('Unknown reaction term.')
-=======
     elif self.opt['reaction_term'] =='x':
       reaction = x
     elif self.opt['reaction_term'] =='Ax':
@@ -225,26 +211,6 @@ class ODEFuncGread(ODEFunc):
       reaction = self.sparse_multiply(diffusion) - x
     elif self.opt['reaction_term'] =='zero':
       reaction = 0.0
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
-    
-    # aggeragation diffusion term
-    elif self.opt['reaction_term'] =='aggdiff-log':
-      kx = self.calculate_log_kernel(x)  # torch.Size([2485, 2485])
-      reaction = (ax-x)*kx  # 1e-4 is a hyperparameter to avoid gradient explosion
-      
-    elif self.opt['reaction_term'] =='aggdiff-gat':
-      kx = self.calculate_gat_kernel(x)  # torch.Size([2485, 64])
-      # self.kernel =  torch.sparse_coo_tensor(self.edge_index, k.squeeze(-1), (x.shape[0], x.shape[0]), requires_grad=False).to('cpu')
-      # print(f'After calculate_gat_kernel: {torch.cuda.memory_allocated() / 1024 ** 2} MB')  # monitor GPU memory usage
-      reaction =  (ax-x)*kx
-      # print(reaction.max(), reaction.min())
-      
-      
-    elif self.opt['reaction_term'] =='aggdiff-gauss':
-      kx = self.calculate_gauss_kernel(x)  # torch.Size([2485, 2485])
-      # self.k_dense = self.calculate_gauss_kernel_dense(x).to('cpu')  # torch.Size([2485, 2485])
-      reaction = (ax-x)*kx  # 1e-4 is a hyperparameter to avoid gradient explosion
-      
     elif self.opt['reaction_term'].split('_')[0] == 'exp':
       orders = int(self.opt['reaction_term'].split('_')[1])
       reaction = x
@@ -330,12 +296,6 @@ class ODEFuncGread(ODEFunc):
       f = f + self.source_train(t) * self.x0
     return f
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 class SpGraphAttentionLayer(nn.Module):
   """
   Sparse version GAT layer, similar to https://arxiv.org/abs/1710.10903
@@ -350,26 +310,10 @@ class SpGraphAttentionLayer(nn.Module):
     self.device = device
     self.opt = opt
     self.h = 1
-<<<<<<< HEAD
-=======
-
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
     try:
       self.attention_dim = opt['attention_dim']
     except KeyError:
       self.attention_dim = out_features
-<<<<<<< HEAD
-    # opt['heads']: 4 
-    assert self.attention_dim % opt['heads'] == 0, "Number of heads must be a factor of the dimension size"
-    self.d_k = self.attention_dim // opt['heads']
-    self.W = nn.Parameter(torch.zeros(size=(in_features, self.attention_dim)))
-    nn.init.xavier_normal_(self.W.data, gain=1.414) # torch.Size([64, 64])
-    self.Wout = nn.Parameter(torch.zeros(size=(self.attention_dim, self.in_features)))
-    nn.init.xavier_normal_(self.Wout.data, gain=1.414)  # torch.Size([64, 64])
-    # self.d_k:16 （每个头的维数）
-    self.a = nn.Parameter(torch.zeros(size=(2 * self.d_k, 1, 1)))
-=======
-
     # opt['heads']: 4 
     assert self.attention_dim % opt['heads'] == 0, "Number of heads must be a factor of the dimension size"
     self.d_k = self.attention_dim // opt['heads']
@@ -379,25 +323,16 @@ class SpGraphAttentionLayer(nn.Module):
 
     self.Wout = nn.Parameter(torch.zeros(size=(self.attention_dim, self.in_features))).to(device)
     nn.init.xavier_normal_(self.Wout.data, gain=1.414)  # torch.Size([64, 64])
-
     # self.d_k:16 （每个头的维数）
     self.a = nn.Parameter(torch.zeros(size=(2 * self.d_k, 1, 1))).to(device)
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
     nn.init.xavier_normal_(self.a.data, gain=1.414) # torch.Size([32, 1, 1])
-
     self.leakyrelu = nn.LeakyReLU(self.alpha)
 
   def forward(self, x, edge): # x: torch.Size([2485, 64]), edge: 2 x E  torch.Size([2, 10138])
-<<<<<<< HEAD
     wx = torch.mm(x.to(self.device), self.W.to(self.device))  # h: N x out  wx: torch.Size([2485, 64])
     h = wx.view(-1, self.h, self.d_k) # torch.Size([2485, 1, 64])
     h = h.transpose(1, 2) # torch.Size([2485, 64, 1])
     h=h.to(self.device)
-=======
-    wx = torch.mm(x, self.W)  # h: N x out  wx: torch.Size([2485, 64])
-    h = wx.view(-1, self.h, self.d_k) # torch.Size([2485, 1, 64])
-    h = h.transpose(1, 2) # torch.Size([2485, 64, 1])
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
     # Self-attention on the nodes - Shared attention mechanism
     # import pdb;pdb.set_trace()
     edge_h = torch.cat((h[edge[0, :], :, :], h[edge[1, :], :, :]), dim=1).transpose(0, 1).to(
@@ -408,7 +343,6 @@ class SpGraphAttentionLayer(nn.Module):
     attention = softmax(edge_e, edge[self.opt['attention_norm_idx']])
     return attention
 
-<<<<<<< HEAD
 class SineMessagePassing(MessagePassing):
     def __init__(self, in_features, out_features):
         super().__init__(aggr='mean')  # 使用'add'聚合
@@ -435,8 +369,6 @@ class SineMessagePassing(MessagePassing):
     def update(self, aggr_out):
         # 这里我们可以选择是否对输出进行进一步的处理
         return aggr_out # torch.Size([2485, 64])
-=======
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
 
 class SpGraphlogKernelLayer(nn.Module):
   def __init__(self, in_features, out_features, opt, device):
@@ -445,15 +377,8 @@ class SpGraphlogKernelLayer(nn.Module):
     self.out_features = out_features  # 64
     self.device = device
     self.opt = opt
-<<<<<<< HEAD
     self.epsilon = opt['log_eps'] # avoid nan in log kernel  
   def forward(self, x, edge): # x: torch.Size([2485, 64]),
-    
-=======
-    self.epsilon = 1e-4 # avoid nan in log kernel
-    # self.W = nn.Parameter(torch.zeros(size=(in_features, self.out_features))).to(device)
-  def forward(self, x, edge): # x: torch.Size([2485, 64]),
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
     k = torch.log(self.epsilon + torch.norm(x[edge[0, :], :] - x[edge[1, :], :], dim = 1)).to(self.device)
     return k  # torch.Size([10138])
   
@@ -464,20 +389,13 @@ class SpGraphgaussKernelLayer(nn.Module):
     self.out_features = out_features  # 64
     self.device = device
     self.opt = opt
-<<<<<<< HEAD
     self.epsilon = 1  
-=======
-    self.epsilon = 1
-    
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
+
   def forward(self, x, edge): # x: torch.Size([2485, 64]),
     d = x.shape[1]
     sq_dist = torch.norm(x[edge[0, :], :] - x[edge[1, :], :], dim = 1, p=2)
     factor = 1 / ((4 * math.pi * self.epsilon ** 2) ** (d / 2))
     exponent = torch.exp(-sq_dist / (4 * self.epsilon ** 2))
     kernel = factor * exponent  # [10138]
-<<<<<<< HEAD
     return kernel
-=======
-    return kernel
->>>>>>> 5bf6bab19202559a05f4e54611fcbec088b52fb8
+

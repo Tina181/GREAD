@@ -1,0 +1,11 @@
+import torch
+a = torch.rand(1, 5, 5)
+print(a[0].shape)
+print(torch.nonzero(a[0]).shape)
+edge_index = torch.nonzero(a[0])
+print(edge_index)
+print(edge_index.reshape(2, -1).shape)
+print(edge_index[:,0])
+print(edge_index[:,1])
+print(edge_index.permute(1, 0)[0])
+print(edge_index.permute(1, 0)[1])
